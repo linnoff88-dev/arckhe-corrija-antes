@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>corrija-antes — El reloj de quienes defienden llegó a cero</title>
+<meta name="description" content="Una IA abierta igualó a la IA hacker protegida de OpenAI y el margen de quienes defienden llegó a cero. Guía con el video, los números y un kit gratis, de solo lectura, que muestra qué corregir AHORA en tu máquina.">
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/corrija-antes/guia/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/corrija-antes/guia/en/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/corrija-antes/guia/es/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#E2A23B; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#b9791d; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:rgba(226,162,59,.12)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  nav .links a.sec{white-space:nowrap}
+  @media(max-width:1300px){nav .links{gap:14px;font-size:.86rem}}
+  @media(max-width:1280px){nav .links a.sec[href="#mudou"],nav .links a.sec[href="#numeros"]{display:none}}
+  @media(max-width:1080px){nav .links a.sec[href="#kits"],nav .links a.sec[href="#video"]{display:none}}
+  @media(max-width:900px){nav .links a.sec{display:none}}
+  .glos{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 22px}
+  .glos h3{font-family:Sora;font-size:1rem;margin:0 0 10px}
+  .glos dl{display:grid;grid-template-columns:minmax(120px,max-content) minmax(0,1fr);gap:8px 16px;margin:0;font-size:.9rem}
+  .glos dt{font-weight:600;color:var(--amb)} .glos dd{margin:0;color:var(--mut)}
+  @media(max-width:540px){.glos dl{grid-template-columns:1fr} .glos dd{margin-bottom:6px}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(226,162,59,.22),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(226,162,59,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:26px}
+  .step>div,.card{min-width:0}
+  p code,li code,td code{overflow-wrap:anywhere}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;height:auto;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+  table.n{width:100%;border-collapse:collapse;font-size:.92rem;margin-top:10px}
+  table.n th,table.n td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left}
+  table.n th{color:var(--amb);font-family:Sora}
+  /* gráficos comparativos (âmbar = agora/realidade, azul = antes/cenário, hachura = projeção) */
+  :root{--c-now:#BF8224;--c-old:#4D8FE0}
+  body.light{--c-now:#B9791D;--c-old:#2F6FC4}
+  .charts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+  @media(max-width:820px){.charts{grid-template-columns:1fr}}
+  .chart{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px}
+  .chart h3{margin:0 0 4px;font-family:Sora;font-size:1.02rem}
+  .chart .cap{color:var(--mut);font-size:.84rem;margin:0 0 14px}
+  .leg{display:flex;flex-wrap:wrap;gap:14px;font-size:.78rem;color:var(--mut);margin-top:10px}
+  .leg i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+  .sw-now{background:var(--c-now)} .sw-old{background:var(--c-old)}
+  .sw-proj{background:repeating-linear-gradient(45deg,var(--c-now) 0 3px,transparent 3px 7px);border:1px solid var(--c-now)}
+  .hb{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+  .hb .g{font-size:.78rem;color:var(--mut);margin-top:6px}
+  .hb .row{display:grid;grid-template-columns:118px minmax(0,1fr);gap:10px;align-items:center;font-size:.82rem}
+  .hb .row>span:first-child{color:var(--mut);line-height:1.25}
+  .hb .trk{position:relative;height:22px}
+  .bar{height:100%;border-radius:0 4px 4px 0;min-width:4px;display:flex;align-items:center}
+  .bar.now{background:var(--c-now)} .bar.old{background:var(--c-old)}
+  .bar.proj{background:repeating-linear-gradient(45deg,var(--c-now) 0 3px,transparent 3px 7px);border:1px solid var(--c-now)}
+  .bar b{position:absolute;left:calc(var(--w) + 8px);font-weight:600;font-size:.8rem;color:var(--txt);white-space:nowrap}
+  .vb{display:flex;align-items:flex-end;gap:6px;height:190px;border-bottom:1px solid var(--line);padding-top:22px}
+  .vb .col{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;position:relative}
+  .vb .col .v{font-size:.74rem;font-weight:600;color:var(--txt);margin-bottom:3px}
+  .vb .col .b{width:100%;max-width:38px;border-radius:4px 4px 0 0;min-height:2px}
+  .vb .col .b.now{background:var(--c-now)} .vb .col .b.old{background:var(--c-old)}
+  .vb .col .b.proj{background:repeating-linear-gradient(45deg,var(--c-now) 0 3px,transparent 3px 7px);border:1px solid var(--c-now);border-bottom:none}
+  .vb .gap{flex:0 0 14px;align-self:center;color:var(--mut);text-align:center}
+  .vx{display:flex;gap:6px;font-size:.72rem;color:var(--mut);margin-top:6px}
+  .vx span{flex:1;text-align:center} .vx .gap{flex:0 0 14px}
+  /* relatórios originais + gráficos originais + ajuste */
+  .reps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-bottom:46px}
+  .rep{display:flex;flex-direction:column;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;color:var(--txt)}
+  .rep:hover{border-color:var(--amb)}
+  .rep .tag{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--amb);font-family:Sora;font-weight:600}
+  .rep strong{font-family:Sora;font-size:1.25rem}
+  .rep span{color:var(--mut);font-size:.93rem}
+  .rep em{font-style:normal;color:var(--amb);font-weight:600;font-size:.88rem;margin-top:auto}
+  .h3o{font-family:Sora;font-size:1.35rem;margin:0 0 .2em}
+  .origs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+  .orig{margin:0;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+  .orig img{display:block;width:100%;height:auto;background:#fff}
+  .orig figcaption{padding:16px 18px;display:flex;flex-direction:column;gap:8px;font-size:.9rem}
+  .orig figcaption b{font-family:Sora;font-size:1.02rem}
+  .orig figcaption span{color:var(--mut)} .orig figcaption i{font-style:normal;color:var(--amb);font-weight:600}
+  .ajuste{margin-top:52px}
+  .aj{border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .ajrow{display:grid;grid-template-columns:1.5fr 1fr 1fr .9fr;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);align-items:center;font-size:.92rem}
+  .ajrow:last-child{border-bottom:none}
+  .ajrow small{display:block;color:var(--mut);font-size:.78rem;font-weight:400}
+  .ajhead{background:var(--bg2);font-family:Sora;font-weight:600;color:var(--amb);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}
+  .ajrow .old{color:var(--c-old);font-weight:600} .ajrow .now{color:var(--c-now);font-weight:700}
+  .ajrow .dif{font-family:Sora;font-weight:800;color:var(--amb)}
+  .aj-em{margin-top:18px;background:rgba(226,162,59,.08);border:1px solid rgba(226,162,59,.35);border-radius:14px;padding:18px 20px}
+  .aj-em small{display:block;color:var(--mut);margin-top:10px;font-size:.82rem}
+  @media(max-width:820px){.reps,.origs{grid-template-columns:1fr}
+    .ajhead{display:none}
+    .ajrow{grid-template-columns:1fr 1fr;gap:8px 14px}
+    .ajrow>span:first-child{grid-column:1/-1}
+    .ajrow .dif{grid-column:1/-1}}
+  /* cenário original com projeções por cima + explicações */
+  .cen{margin-bottom:52px}
+  .kbox{display:flex;flex-direction:column;gap:7px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--amb);border-radius:12px;padding:16px 18px;margin:0 0 22px;font-size:.9rem}
+  .kbox span{color:var(--mut)} .kbox i:not(.sw){font-style:normal;color:var(--txt);font-weight:600}
+  .kbox .sw{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:7px;vertical-align:-1px}
+  .ov{position:relative;background:#fff}
+  .ov .pa{position:absolute;left:0;right:0;pointer-events:none}
+  .ov .vl{position:absolute;top:0;bottom:0;border-left:3px dashed #16a34a}
+  .ov .vl.old{border-left-color:#2563eb}
+  .ov .band{position:absolute;top:0;bottom:0;background:rgba(226,162,59,.32);border-left:2px solid #d97706;border-right:2px solid #d97706}
+  .ov .band.ted{background:repeating-linear-gradient(45deg,rgba(147,51,234,.22) 0 6px,rgba(147,51,234,.08) 6px 12px);border-color:#9333ea}
+  .ov em,.mk em{font-style:normal;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font:800 .75rem Sora,sans-serif;color:#fff;background:#16a34a}
+  .ov em{position:absolute;top:-4px;left:50%;transform:translateX(-50%);box-shadow:0 1px 4px rgba(0,0,0,.35)}
+  .ov .vl em{left:-1.5px}
+  .ov .vl.old em,.mk em.old{background:#2563eb}
+  .ov .band em,.mk em.band{background:#d97706} .ov .band.ted em,.mk em.ted{background:#9333ea}
+  .mk{list-style:none;margin:2px 0;padding:0;display:flex;flex-direction:column;gap:6px;color:var(--mut)}
+  .mk li{position:relative;padding-left:30px;min-height:22px} .mk li>em{position:absolute;left:0;top:1px}
+  .ov .band em{top:auto;bottom:6px}
+  .exp{color:var(--mut);font-size:.86rem;margin:12px 0 0;padding-top:12px;border-top:1px dashed var(--line)}
+  .exp b{color:var(--amb)}
+  /* plano de ação + animação da janela */
+  .anim{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 22px 18px;margin-bottom:34px}
+  .an-top{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-bottom:26px}
+  .clk{display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--mut)} .clk b{color:var(--amb)}
+  .dial{position:relative;width:42px;height:42px;border-radius:50%;border:3px solid var(--c-old)}
+  .dial.now{border-color:var(--c-now)}
+  .hand{position:absolute;left:50%;bottom:50%;width:3px;height:15px;margin-left:-1.5px;border-radius:2px;background:var(--txt);transform-origin:50% 100%}
+  .anim.run .hand.slow{animation:spin 3s linear infinite} .anim.run .hand.fast{animation:spin 1.765s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .replay{margin-left:auto;background:var(--bg2);border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:.45em .9em;cursor:pointer;font:600 .85rem Sora,sans-serif}
+  .replay:hover{border-color:var(--amb)}
+  .an-axis{position:relative;height:34px;margin:0 8% 6px 150px;border-bottom:1px solid var(--line);font-size:.74rem;color:var(--mut)}
+  .an-axis span{position:absolute;bottom:4px;transform:translateX(-50%);text-align:center;line-height:1.15;white-space:nowrap}
+  .an-axis span:first-child{transform:none}
+  .trk2{display:grid;grid-template-columns:140px minmax(0,1fr);gap:10px;align-items:center;margin:18px 8% 0 0}
+  .trk2 .lbl{font:600 .82rem Sora,sans-serif;color:var(--mut)}
+  .lane{position:relative;height:30px;background:var(--bg2);border-radius:8px;margin-bottom:46px}
+  .fill{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:8px}
+  .fill.old{background:var(--c-old)} .fill.now{background:var(--c-now)}
+  .zone{position:absolute;top:-4px;bottom:-4px;background:repeating-linear-gradient(45deg,rgba(226,162,59,.35) 0 5px,transparent 5px 10px);border:1px dashed var(--c-now);border-radius:6px}
+  .pin{position:absolute;top:-6px;bottom:-6px;border-left:3px solid var(--c-old);opacity:.25;transition:opacity .4s}
+  .pin.now{border-color:var(--c-now)} .pin.on{opacity:1}
+  .pin em{position:absolute;top:100%;margin-top:4px;font-style:normal;font-size:.72rem;font-weight:600;white-space:nowrap;transform:translateX(-100%);color:var(--txt)}
+  .pin.now em{transform:none;left:4px}
+  .pin small{position:absolute;bottom:100%;margin-bottom:2px;font-size:.72rem;color:var(--mut);white-space:nowrap;transform:translateX(-50%)}
+  .cnt{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:.8rem;color:#fff;font-weight:600;white-space:nowrap;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+  .cnt b{font:800 1.05rem Sora,sans-serif}
+  .an-cap{color:var(--mut);font-size:.9rem;margin:0}
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .vcol{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+  .vcol.old{border-top:4px solid var(--c-old)} .vcol.now{border-top:4px solid var(--c-now)}
+  .vcol .tag{font:600 .74rem Sora,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+  .vcol h3{font-family:Sora;margin:.4em 0 .7em;font-size:1.1rem}
+  .vcol ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;color:var(--mut);font-size:.9rem}
+  .vcol li b{color:var(--txt)}
+  .steps2{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+  .st{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px;font-size:.86rem}
+  .st .when{font:800 .78rem Sora,sans-serif;color:var(--amb);text-transform:uppercase;letter-spacing:.05em}
+  .st b{font-family:Sora;font-size:.98rem} .st>span:last-child{color:var(--mut)}
+  .st code{font-size:.8rem;color:var(--amb2)}
+  @media(max-width:1000px){.steps2{grid-template-columns:1fr 1fr}}
+  @media(max-width:700px){.vs,.steps2{grid-template-columns:1fr}
+    .an-axis{margin-left:0;margin-right:12%} .trk2{grid-template-columns:1fr;gap:24px;margin-right:12%}}
+  /* parte técnica isolada embaixo */
+  .techhead{background:var(--bg2);border-top:3px solid var(--amb);padding:58px 0 8px}
+  .techhead h2{font-family:Sora;margin:.3em 0 0}
+  .techzone{background:var(--bg2)}
+  .caso-cta{display:flex;flex-direction:column;gap:6px;margin-top:26px;background:var(--card);border:1px solid var(--amb);border-radius:16px;padding:20px 22px;color:var(--txt)}
+  .caso-cta:hover{background:var(--bg2)} .caso-cta b{font:800 1.2rem Sora,sans-serif} .caso-cta>span:last-child{color:var(--mut)}
+</style>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top"><span class="emoji">🛡️</span> corrija-antes</a>
+  <span class="sep">|</span>
+  <span class="clubpro">
+    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <span class="sep">-</span>
+    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  </span>
+  <div class="links">
+    <a class="sec" href="#video">Video</a>
+    <a class="sec" href="#mudou">Qué cambió</a>
+    <a class="sec" href="#numeros">Números</a>
+    <a class="sec" href="#acao">Plan de acción</a>
+    <a class="sec" href="#kits">Otros kits</a>
+    <a class="sec" href="#tecnico">Kit (técnico)</a>
+    <span class="lang"><a href="../">PT</a><a href="../en/">EN</a><a class="on" href="./">ES</a></span>
+    <button class="tgl" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema">🌙</button>
+    <a class="btn" href="https://github.com/inematds/corrija-antes" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="chip">corrija-antes · kit gratis · Python · solo lectura</span>
+      <h1>El reloj de quienes defienden <span class="amb">llegó a cero</span></h1>
+      <p class="lead">Una IA abierta, que cualquiera puede descargar gratis, logró entrar en una red empresarial al mismo nivel que la IA hacker protegida de OpenAI. Se acabó el margen de meses que tenían quienes defienden. Esta guía muestra qué cambió y ofrece un kit gratis que indica, en segundos, qué corregir AHORA en tu computadora o servidor.</p>
+      <div class="cta">
+        <a class="btn" href="#video">Entender en 5 minutos</a>
+        <a class="btn ghost" href="https://github.com/inematds/corrija-antes" target="_blank" rel="noopener">Ver en GitHub</a>
+      </div>
+    </div>
+    <figure><img src="../assets/banner-es.jpg" alt="Corrija antes: el reloj de quienes defienden llegó a cero. Reloj rojo en 00:00:00 junto a un escudo de servidor"></figure>
+  </div>
+</header>
+
+<section id="resumo" class="resumo"><div class="wrap">
+  <span class="chip">En resumen</span>
+  <p>Hasta julio de 2026, las IA abiertas estaban <strong>entre 4 y 7 meses</strong> detrás de las cerradas en ataques. Ese era el tiempo que tenía una empresa para probar y aplicar una corrección. En octubre, en una prueba de intrusión, esa distancia llegó a <strong>cero</strong>: la IA abierta de DeepSeek quedó a la par de la IA hacker protegida de OpenAI por una décima parte del precio. La defensa que todavía funciona no tiene glamour: <strong>actualizar más rápido, vigilar la red y encontrar tus propios puntos débiles antes que los demás</strong>. Esta guía explica la historia y termina con un plan de acción. Al final, por separado, hay un kit gratis que hace ese diagnóstico en tu máquina, solo leyendo.</p>
+  <figure style="margin:22px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="../assets/banner-grade-es.jpg" alt="Corrija antes: actualizaciones pendientes, puertos abiertos, SSH y firewall, secretos en git, revisión con IA y rutina de la semana" loading="lazy" style="width:100%;display:block"></figure>
+</div></section>
+
+<section id="video"><div class="wrap">
+  <span class="chip">Video</span>
+  <h2>La historia en <span class="amb">5 minutos</span></h2>
+  <p class="sub">La caja fuerte de OpenAI, la prueba que asustó a todo el mundo, el truco que hizo que DeepSeek llegara hasta ahí y lo que debes hacer para protegerte.</p>
+  <div style="aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid var(--line)"><iframe referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/1WFT-VgGuPM" title="Video: China liberó gratis la IA hacker que OpenAI protegió" style="width:100%;height:100%;border:0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+  <p class="mut" style="margin-top:12px"><a href="https://www.youtube.com/watch?v=1WFT-VgGuPM" target="_blank" rel="noopener">▶ Ver en YouTube</a> · <a href="https://youtube.com/shorts/-R65CemeRvc" target="_blank" rel="noopener">Versión vertical (celular)</a></p>
+</div></section>
+
+<section id="mudou"><div class="wrap">
+  <span class="chip">Qué cambió</span>
+  <h2>De una caja fuerte cerrada a un <span class="amb">botón de descarga</span></h2>
+  <p class="sub">Cuatro escenas explican por qué se acortó tu plazo para corregir.</p>
+  <div class="ex">
+    <figure><img src="../assets/v-cofre.jpg" alt="Puerta de caja fuerte bancaria cerrada con lector de huella, pasaporte y llave física" loading="lazy"><figcaption><b>1. La caja fuerte.</b> OpenAI solo libera su IA hacker mediante el programa Daybreak: identidad verificada, uso monitoreado, contrato firmado y llave física. El modelo común completa el 1,5% de las solicitudes avanzadas de ataque; el especialista, dentro de la caja fuerte, completa el 95%.</figcaption></figure>
+    <figure><img src="../assets/v-alarme.jpg" alt="Alicate cortando el cable rojo de una alarma" loading="lazy"><figcaption><b>2. La alarma cortada.</b> En septiembre, DeepSeek lanzó el V4.1 Flash, abierto y con licencia libre. Pocos días después, alguien publicó una versión sin el bloqueo que hace que la IA rechace solicitudes. La IA sabe lo mismo, pero deja de decir que no. Para usarla, basta con una tarjeta de crédito o una computadora potente.</figcaption></figure>
+    <figure><img src="../assets/v-ladrao.jpg" alt="Silueta encapuchada con un enorme manojo de llaves frente a una puerta trasera" loading="lazy"><figcaption><b>3. Paciencia barata.</b> DeepSeek no gana por ser genial: gana porque no se rinde. Es como un ladrón que prueba diez mil llaves baratas, una por una. Si cada llave cuesta casi nada, también puede entrar antes del amanecer. Quien ataca no necesita ser el mejor; solo necesita ser lo bastante bueno, muchas veces.</figcaption></figure>
+    <figure><img src="../assets/v-relogio.jpg" alt="Cronómetro digital rojo marcando 00:00:00 en un pasillo de centro de datos" loading="lazy"><figcaption><b>4. Sonó el reloj.</b> El plan de OpenAI era ganar tiempo para quienes defienden. En julio, el instituto británico de seguridad midió un margen de entre 4 y 7 meses. En octubre, en esa red de prueba, el margen llegó a cero. El problema no es que la IA china sea más inteligente: es que está en todas partes.</figcaption></figure>
+  </div>
+</div></section>
+
+<section id="numeros"><div class="wrap">
+  <span class="chip">Números</span>
+  <h2>La prueba que <span class="amb">asustó a todo el mundo</span></h2>
+  <p class="sub">La empresa de pruebas Vals montó empresas falsas, con redes reales, y dejó que cada IA actuara sola, sin ayuda humana. El objetivo era el «armario de llaves» de la empresa: quien se apodera de ese armario controla el edificio.</p>
+  <div class="charts">
+   <div class="chart"><h3>Objetivos cumplidos en la primera red</h3><p class="cap">Promedio de objetivos alcanzados, de 21 posibles.</p>
+    <div class="hb" role="img" aria-label="DeepSeek 16,3 de 21; OpenAI 15,7 de 21">
+      <div class="row"><span>DeepSeek (abierta)</span><div class="trk" title="DeepSeek: 16,3 de 21"><div class="bar now" style="--w:62%;width:62%"><b>16,3</b></div></div></div>
+      <div class="row"><span>OpenAI (protegida)</span><div class="trk" title="OpenAI: 15,7 de 21"><div class="bar old" style="--w:59.7%;width:59.7%"><b>15,7</b></div></div></div>
+    </div>
+    <div class="leg"><span><i class="sw-now"></i>IA abierta</span><span><i class="sw-old"></i>IA protegida</span></div>
+    <p class="exp"><b>Qué significa:</b> en esta red, la IA que cualquiera puede descargar superó a la de la caja fuerte. En el marcador general de todas las pruebas, OpenAI todavía gana (<strong>80,8% frente a 72,8%</strong>), pero la diferencia se volvió un detalle.</p>
+   </div>
+   <div class="chart"><h3>Cuánto costó cada intento</h3><p class="cap">Costo promedio de una ronda de intrusión, en dólares.</p>
+    <div class="hb" role="img" aria-label="DeepSeek menos de 3 dólares; OpenAI cerca de 22 dólares">
+      <div class="row"><span>DeepSeek</span><div class="trk" title="DeepSeek: menos de US$ 3"><div class="bar now" style="--w:8.2%;width:8.2%"><b>&lt; US$ 3</b></div></div></div>
+      <div class="row"><span>OpenAI</span><div class="trk" title="OpenAI: cerca de US$ 22"><div class="bar old" style="--w:60%;width:60%"><b>~ US$ 22</b></div></div></div>
+    </div>
+    <div class="leg"><span><i class="sw-now"></i>IA abierta</span><span><i class="sw-old"></i>IA protegida</span></div>
+    <p class="exp"><b>Qué significa:</b> con el mismo dinero, quien ataca puede hacer <strong>siete veces más intentos</strong>. En otra prueba, DeepSeek quedó solo 4 puntos atrás y fue <strong>19 veces más barata</strong>.</p>
+   </div>
+   <div class="chart"><h3>El margen de quienes defienden</h3><p class="cap">Cuánto estaban por detrás las IA abiertas de las cerradas en ataques.</p>
+    <div class="hb" role="img" aria-label="Julio de 2026: de 4 a 7 meses; octubre de 2026: cero">
+      <div class="row"><span>julio/2026</span><div class="trk" title="Julio de 2026: de 4 a 7 meses"><div class="bar old" style="--w:55%;width:55%"><b>de 4 a 7 meses</b></div></div></div>
+      <div class="row"><span>octubre/2026</span><div class="trk" title="Octubre de 2026: cero"><div class="bar now" style="--w:0.6%;width:0.6%"><b>cero</b></div></div></div>
+    </div>
+    <p class="exp"><b>Qué significa:</b> cuatro meses es el tiempo que necesita un hospital para probar y aplicar una corrección. Ese tiempo ya no existe. Lo que hacía la mejor IA hace cuatro meses, cualquier persona con una laptop puede hacerlo hoy por la noche.</p>
+   </div>
+   <div class="chart"><h3>La misma pregunta, dos respuestas</h3><p class="cap">Solicitudes avanzadas de ataque que completa cada modelo de OpenAI.</p>
+    <div class="hb" role="img" aria-label="Modelo común 1,5%; modelo especialista 95%">
+      <div class="row"><span>Modelo común</span><div class="trk" title="Modelo común: 1,5%"><div class="bar old" style="--w:1.3%;width:1.3%"><b>1,5%</b></div></div></div>
+      <div class="row"><span>Especialista de la caja fuerte</span><div class="trk" title="Especialista: 95%"><div class="bar old" style="--w:72%;width:72%"><b>95%</b></div></div></div>
+    </div>
+    <p class="exp"><b>Qué significa:</b> el bloqueo es lo que separa el «no» del «aquí tienes cómo hacerlo». Cuando los pesos (el archivo del modelo) son públicos, alguien quita el bloqueo. Y en una prueba de seguridad, después de avisarle que la apagarían, esta IA evitó su propio apagado en el <strong>39%</strong> de los casos.</p>
+   </div>
+  </div>
+  <p class="mut" style="margin-top:18px;font-size:.86rem">Según un reportaje, aún sin comprobar, parte del talento de DeepSeek podría venir de respuestas copiadas del propio modelo de OpenAI. Además, investigadores ya encontraron ataques reales contra gobiernos que usaron DeepSeek junto con otras herramientas.</p>
+</div></section>
+
+<section id="acao"><div class="wrap">
+  <span class="chip">Plan de acción</span>
+  <h2>La defensa que dura es la que <span class="amb">no tiene glamour</span></h2>
+  <p class="sub">La misma habilidad que sirve para entrar también permite encontrar el agujero antes que un intruso. Quienes defienden pueden usarla hoy, sin pedir permiso a nadie. Tres hábitos, cada semana:</p>
+  <div class="grid g3">
+    <div class="card"><h3>⏱️ 1. Actualiza más rápido</h3><p>Una corrección de seguridad no puede esperar hasta el mes que viene. Un día fijo de la semana: haz una copia de seguridad, comprueba que todo funcione bien, actualiza y prueba. Empieza por lo que está conectado a internet (servidor, sitio web, router) y por lo que guarda datos.</p></div>
+    <div class="card"><h3>📡 2. Vigila tu red</h3><p>Ten claro qué está abierto. Las bases de datos, Redis, la IA local y el escritorio remoto nunca deberían aceptar conexiones desde cualquier lugar. Usa SSH solo con llave, nunca con contraseña. Mantén el firewall activado y recuerda que Docker puede abrir puertos por encima de él.</p></div>
+    <div class="card"><h3>🔎 3. Encuentra primero tus puntos débiles</h3><p>Pídele a la misma IA que revise <strong>tu</strong> código: una contraseña olvidada en el proyecto, una ruta sin inicio de sesión, un precio que envía el navegador. Lo que un atacante encontraría en una noche, tú puedes encontrarlo y corregirlo antes.</p></div>
+  </div>
+  <div class="glos"><h3>📖 Palabras que aparecen aquí</h3><dl>
+    <dt>Puerto</dt><dd>la «entrada» por donde un programa recibe conexiones. Que esté abierto «a la red» quiere decir que otras máquinas pueden conectarse.</dd>
+    <dt>SSH</dt><dd>el puerto por donde entras al servidor desde la terminal. Con contraseña, los robots prueban miles de claves al día; con llave, no les sirve.</dd>
+    <dt>Firewall</dt><dd>el portero de la máquina: decide qué puertos aceptan conexiones desde afuera.</dd>
+    <dt>Docker</dt><dd>programa que ejecuta sistemas en «cajas» (contenedores). Cuando publica un puerto, puede saltarse el firewall común de Linux (ufw).</dd>
+    <dt>Base de datos, Redis</dt><dd>donde la aplicación guarda datos. Redis es una memoria rápida que viene sin contraseña.</dd>
+    <dt>IA local (Ollama)</dt><dd>modelo de IA que funciona en tu computadora. Si está abierto a la red, cualquiera puede usar tu máquina gratis.</dd>
+    <dt>Ruta sin inicio de sesión</dt><dd>dirección de la aplicación que entrega datos sin comprobar quién los solicita.</dd>
+    <dt>Secreto, .env</dt><dd>contraseñas y claves de servicios. El archivo <code>.env</code> suele guardarlas y nunca debe subirse a git (el historial del código).</dd>
+  </dl></div>
+  <div class="ex" style="margin-top:22px">
+    <figure><img src="../assets/v-defensor.jpg" alt="Analista de seguridad de espaldas frente a una pantalla con un escudo azul que bloquea alertas" loading="lazy"><figcaption><b>Parte de esta idea:</b> lo que hacía la mejor IA del mundo hace cuatro meses, cualquier persona puede hacerlo hoy. La ventana no se cerró con una intrusión: se cerró con un botón de descarga.</figcaption></figure>
+    <figure><img src="../assets/v-fecha.jpg" alt="Mano de un técnico cerrando la puerta de un rack de servidor con luces verdes encendidas" loading="lazy"><figcaption><b>En 20 minutos por semana</b>, el kit de abajo muestra qué corregir AHORA y qué puede esperar hasta la semana, sin cambiar nada por su cuenta. <a href="#guia">Cómo usarlo ↓</a></figcaption></figure>
+  </div>
+</div></section>
+
+<section id="kits"><div class="wrap">
+  <span class="chip">Auditoría y diagnóstico disponibles</span>
+  <h2>Para profundizar: <span class="amb">otros kits INEMA</span></h2>
+  <p class="sub">Cada uno se ocupa de una parte. Todos son gratis, defensivos y funcionan en tus propios equipos.</p>
+  <div class="grid g3">
+    <a class="card" href="https://inematds.github.io/auditoria-seguranca/guia/" target="_blank" rel="noopener"><h3>🛡️ auditoria-seguranca</h3><p>Comprueba si los programas de tu servidor todavía confían en certificados de seguridad cuyas claves se filtraron, y si PHP (el lenguaje de muchos sitios, como WordPress) tiene una falla grave de octubre. Útil para servidores y automatización.</p></a>
+    <a class="card" href="https://inematds.github.io/blinda-site/guia/" target="_blank" rel="noopener"><h3>🧱 blinda-site</h3><p>Diagnóstico interno de tu sitio: plan, copia de seguridad, simulación y dos niveles de riesgo.</p></a>
+    <a class="card" href="https://inematds.github.io/invada-seu-proprio-app/guia/" target="_blank" rel="noopener"><h3>🕵️ invada-seu-proprio-app</h3><p>Las 5 fallas más comunes de las aplicaciones hechas con IA (restablecimiento de contraseña, comentarios, chatbot, precio, agente), probadas en tu copia de prueba.</p></a>
+    <a class="card" href="https://inematds.github.io/agente-blindado/guia/" target="_blank" rel="noopener"><h3>🤖 agente-blindado</h3><p>5 bloqueos contra la inyección de prompts (texto oculto en un correo o una página que se convierte en una orden para el agente) y 10 ataques para probar el tuyo.</p></a>
+    <a class="card" href="https://inematds.github.io/caixa-do-agente/guia/" target="_blank" rel="noopener"><h3>📦 caixa-do-agente</h3><p>Evalúa la configuración de tu agente de código (Claude Code, Codex, DeepSeek) y lo ejecuta en una caja descartable, sin internet ni tus contraseñas.</p></a>
+    <a class="card" href="https://inematds.github.io/ia-sem-censura-defensiva/guia/" target="_blank" rel="noopener"><h3>🔓 ia-sem-censura-defensiva</h3><p>Modelo abierto sin bloqueos, bien utilizado: solo para defensa y funcionando en tu máquina.</p></a>
+    <a class="card" href="https://inematds.github.io/protegendo-seus-repos/guia/" target="_blank" rel="noopener"><h3>💾 protegendo-seus-repos</h3><p>Copia de seguridad en 3 capas de tus repositorios contra el bloqueo de la cuenta o una intrusión.</p></a>
+  </div>
+</div></section>
+
+<div id="tecnico" class="techhead"><div class="wrap">
+  <span class="chip">Parte técnica</span>
+  <h2>El kit: <span class="amb">para quienes quieren revisar su propia máquina</span></h2>
+  <p class="sub">De aquí para abajo está la parte técnica: descargar, ejecutar el diagnóstico y leer el informe. <strong>No necesitas</strong> esta parte para entender lo anterior.</p>
+</div></div>
+
+<div class="techzone">
+<section id="oque"><div class="wrap">
+  <span class="chip">Qué es</span>
+  <h2>Un diagnóstico <span class="amb">que solo lee</span></h2>
+  <p class="sub">Uso defensivo: ejecútalo solo en tu máquina y en tus repositorios. El kit no instala, no actualiza, no corrige, no analiza otras máquinas ni envía nada: solo consulta los servidores de actualización de tu propio sistema.</p>
+  <div class="grid g3">
+    <div class="card"><h3>⏰ relogio.py</h3><p>Revisa los 3 bloques en segundos (actualizar, vigilar la red, tus puntos débiles) y asigna una prioridad a cada hallazgo: AGORA, SEMANA, SEM TESTE u OK. Guarda <code>relatorio.md</code> y <code>relatorio.json</code>, con las IP y el nombre de la máquina ocultos.</p></div>
+    <div class="card"><h3>🤖 Prompt de revisión</h3><p><code>prompts/revisao-com-ia.md</code> permite que Claude Code, Codex o un modelo local revise tu código solo leyendo y entregue una tabla ordenada de lo más grave a lo menos grave.</p></div>
+    <div class="card"><h3>📅 Rutina de la semana</h3><p><code>ROTINA.md</code>: 20 minutos en un día fijo. Copia de seguridad, comprobar que todo funcione, corregir los elementos AGORA uno por uno, probar y volver a ejecutar el reloj.</p></div>
+  </div>
+</div></section>
+
+<section id="fluxo"><div class="wrap">
+  <span class="chip">Cómo funciona</span>
+  <h2>Del diagnóstico a la <span class="amb">corrección</span></h2>
+  <div class="flow">
+    <span>relogio.py lee la máquina</span><span class="arr">→</span>
+    <span>lista AGORA / SEMANA</span><span class="arr">→</span>
+    <span>copia de seguridad + comprobar que todo funcione</span><span class="arr">→</span>
+    <span>tú corriges</span><span class="arr">→</span>
+    <span>la IA revisa el código</span><span class="arr">→</span>
+    <span>relogio.py otra vez</span>
+  </div>
+  <table class="n">
+    <tr><th>Bloque</th><th>Qué revisa</th></tr>
+    <tr><td>1. Actualiza</td><td>Correcciones de seguridad del sistema (apt, dnf, Homebrew, macOS), snaps, paquetes globales de npm, imágenes Docker en uso con más de 4 meses, reinicio pendiente y cuántos días han pasado desde la última actualización.</td></tr>
+    <tr><td>2. Vigila la red</td><td>Qué escucha solo en la máquina, solo en la red interna/VPN o en cualquier red; puertos críticos (bases de datos, Redis, Ollama, VNC/RDP, API de Docker); firewall; SSH con contraseña o root; puertos que Docker publica por encima de ufw.</td></tr>
+    <tr><td>3. Tus puntos débiles</td><td>Con <code>--repo</code>: <code>.env</code> dentro de git, <code>.gitignore</code> sin <code>.env</code>, claves y tokens en el código (el valor aparece oculto), dependencias sin actualizar desde hace más de 4 meses. Formatos reconocidos: AWS, OpenAI/Anthropic, DeepSeek, OpenRouter, Stripe, GitHub, Slack (token y webhook), Google, Telegram, Mercado Pago, Groq, Hugging Face, GitLab, SendGrid, npm, Resend, service_role de Supabase, clave privada, contraseña en una URL de base de datos y contraseñas/claves de <code>wp-config.php</code>. Solo lee los archivos actuales, no el historial de git; una contraseña genérica (<code>password=…</code>) o claves de otros servicios pasan sin aviso.</td></tr>
+  </table>
+  <table class="n" style="margin-top:18px">
+    <tr><th>Prioridad</th><th>Significa</th></tr>
+    <tr><td><b>AGORA</b> (ahora)</td><td>corrección de seguridad pendiente, base de datos/Redis/Ollama/escritorio remoto abierto a la red, SSH con contraseña, secreto en el código</td></tr>
+    <tr><td><b>SEMANA</b> (esta semana)</td><td>actualización común, puerto abierto para revisar, firewall apagado, imagen Docker vieja, <code>.env</code> fuera de <code>.gitignore</code>, clave con apariencia de ejemplo</td></tr>
+    <tr><td><b>SEM TESTE</b> (sin prueba)</td><td>no se pudo revisar (falta permiso o herramienta). No significa que sea seguro.</td></tr>
+    <tr><td><b>OK</b></td><td>revisado y al día</td></tr>
+  </table>
+</div></section>
+
+<section id="pre"><div class="wrap">
+  <span class="chip">Requisitos</span>
+  <h2>Solo <span class="amb">Python 3</span></h2>
+  <p class="sub">Linux o macOS. No hay paquetes que instalar ni claves que configurar. Sin <code>sudo</code>, algunos elementos quedan como SEM TESTE y el script indica qué comando ejecutar para revisarlos.</p>
+  <div class="grid g3">
+    <div class="card"><h3>🐍 Python 3</h3><p>Ya viene en Linux y macOS. Compruébalo:</p><pre><span class="k">python3 --version</span></pre></div>
+    <div class="card"><h3>📥 El kit</h3><p>Si tienes git, clónalo. Si no, <a href="https://github.com/inematds/corrija-antes/archive/refs/heads/main.zip">descarga el ZIP</a> y abre la terminal en la carpeta <code>corrija-antes-main</code>.</p><pre><span class="k">git clone https://github.com/inematds/corrija-antes</span>
+<span class="k">cd corrija-antes</span></pre></div>
+    <div class="card"><h3>📁 Un proyecto tuyo</h3><p>Para el bloque 3, necesitas la carpeta de uno de tus repositorios git (sitio web, aplicación, automatización). Sin ella, el kit solo revisa la máquina.</p></div>
+  </div>
+</div></section>
+
+<section id="guia"><div class="wrap">
+  <span class="chip">Guía de uso · paso a paso</span>
+  <h2>En <span class="amb">20 minutos</span></h2>
+
+  <div class="step"><div class="b">1</div><div>
+    <h3>Ejecuta el reloj</h3>
+    <p>En la carpeta del kit, cambia <code>~/seu-projeto</code> por la carpeta de tu proyecto. Tarda pocos segundos.</p>
+<pre><span class="k">python3 relogio.py --repo ~/seu-projeto --saida relatorio</span>
+<span class="c"># un solo bloque: --blocos atualize | vigie | codigo</span>
+<span class="c"># varios proyectos: repite --repo</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">2</div><div>
+    <h3>Lee la lista</h3>
+    <p>La pantalla muestra los elementos por bloque, de lo más urgente a OK, y cada uno indica qué hacer. También se guarda en <code>relatorio/relatorio.md</code>. El código de salida es <code>1</code> cuando hay un elemento AGORA (útil para automatizar).</p>
+<pre><span class="c"># el script imprime el informe en portugués</span>
+<span class="c">== VIGIE A REDE ==</span>
+  [AGORA] Porta 6379 aberta para a rede: Redis escutando em todos os endereços
+      → Se só você usa: prender em 127.0.0.1 na configuração do serviço.
+  [SEMANA] Firewall (ufw): ufw instalado mas DESLIGADO</pre>
+  </div></div>
+
+  <div class="step"><div class="b">3</div><div>
+    <h3>Haz una copia de seguridad y comprueba que todo funcione antes de tocar nada</h3>
+    <p>Haz una copia de la base de datos, los volúmenes y la configuración. Comprueba que todo funcione <strong>antes</strong>: así sabrás si la actualización rompió algo.</p>
+  </div></div>
+
+  <div class="step"><div class="b">4</div><div>
+    <h3>Resuelve los elementos AGORA, uno por uno</h3>
+    <p>Los más comunes y cómo corregirlos:</p>
+<pre><span class="c"># corrección de seguridad del sistema (Ubuntu/Debian)</span>
+<span class="k">sudo apt update &amp;&amp; sudo apt upgrade</span>
+<span class="c"># puerto de un contenedor abierto a todos: cambia esto en docker-compose.yml</span>
+<span class="s">"5432:5432"</span>  <span class="c"># por:</span>  <span class="s">"127.0.0.1:5432:5432"</span>
+<span class="c"># SSH con contraseña: después de entrar con llave, en /etc/ssh/sshd_config</span>
+<span class="s">PasswordAuthentication no</span></pre>
+    <p>Secreto en el código: cambia la clave en el panel del servicio. No basta con borrarla del archivo, porque sigue en el historial de git.</p>
+  </div></div>
+
+  <div class="step"><div class="b">5</div><div>
+    <h3>Pídele a la IA que encuentre lo demás</h3>
+    <p>El script solo encuentra lo evidente. Para errores de lógica (una ruta sin inicio de sesión, un precio que envía el navegador), usa IA. Abre Claude Code, Codex o un modelo local en la carpeta del proyecto y pega el prompt de <a href="https://github.com/inematds/corrija-antes/blob/main/prompts/revisao-com-ia.md" target="_blank" rel="noopener">prompts/revisao-com-ia.md</a> (en portugués). Después, vuelve a ejecutar el reloj:</p>
+<pre><span class="k">python3 relogio.py --blocos codigo --repo ~/seu-projeto</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">6</div><div>
+    <h3>Cada lunes, a la misma hora (opcional)</h3>
+    <p>Cron ejecuta el reloj y guarda el informe. Sigue siendo solo de lectura: tú haces las correcciones. Una carpeta por fecha permite compararlo con la semana anterior. Encontrarás los detalles en <a href="https://github.com/inematds/corrija-antes/blob/main/ROTINA.md" target="_blank" rel="noopener">ROTINA.md</a> (en portugués).</p>
+<pre><span class="k">crontab -e</span>
+<span class="c"># agrega (cambia las rutas):</span>
+<span class="s">0 9 * * 1 python3 ~/corrija-antes/relogio.py --repo ~/seu-projeto --saida ~/relogio/$(date +\%F) &gt;/dev/null 2&gt;&amp;1</span></pre>
+  </div></div>
+</div></section>
+
+<section id="exemplos"><div class="wrap">
+  <span class="chip">Ejemplo</span>
+  <h2>Un informe <span class="amb">real</span>, con datos inventados</h2>
+  <p class="sub">Servidor ficticio de una tienda: 8 elementos para AGORA y 6 para la semana. El informe completo está en <a href="https://github.com/inematds/corrija-antes/blob/main/exemplos/relatorio-exemplo.md" target="_blank" rel="noopener">exemplos/relatorio-exemplo.md</a> (en portugués).</p>
+  <table class="n">
+    <tr><th>Prioridad</th><th>Elemento</th><th>Qué hacer</th></tr>
+    <tr><td><b>AGORA</b></td><td>2 correcciones de seguridad del sistema (openssl, openssh-server); última actualización hace 52 días</td><td>copia de seguridad, <code>apt upgrade</code>, actualizar cada semana</td></tr>
+    <tr><td><b>AGORA</b></td><td>Redis (6379) y Ollama (11434) abiertos a la red</td><td>limitar el acceso a 127.0.0.1</td></tr>
+    <tr><td><b>AGORA</b></td><td>SSH acepta contraseña</td><td>entrar con llave y desactivar la contraseña</td></tr>
+    <tr><td><b>AGORA</b></td><td>Postgres del contenedor publicado para todos (por encima de ufw)</td><td>limitar el acceso a 127.0.0.1 en <code>docker-compose.yml</code></td></tr>
+    <tr><td><b>AGORA</b></td><td><code>.env</code> dentro de git y clave en <code>pagamento.js</code></td><td>cambiar las claves y quitarlo de git</td></tr>
+    <tr><td>SEMANA</td><td>ufw apagado, imagen de Postgres con 559 días, npm y snaps</td><td>en la ventana de mantenimiento de la semana</td></tr>
+  </table>
+</div></section>
+
+<section id="roadmap"><div class="wrap">
+  <span class="chip">Hoja de ruta</span>
+  <h2>Próximos pasos</h2>
+  <div class="phase"><div class="tag">Hoy</div><div class="d"><strong>Reloj, prompt y rutina</strong><span>Un script de solo lectura, 82 pruebas con datos inventados, Linux y macOS.</span></div></div>
+  <div class="phase"><div class="tag">Próximo</div><div class="d"><strong>Comparar semanas</strong><span>Leer dos <code>relatorio.json</code> y mostrar qué se cerró y qué apareció.</span></div></div>
+  <div class="phase"><div class="tag">Después</div><div class="d"><strong>Windows</strong><span>El mismo diagnóstico con comandos de PowerShell.</span></div></div>
+</div></section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="pill">Python 3</div><div class="pill">sin dependencias</div><div class="pill">solo lectura</div>
+    <p style="margin-top:18px">corrija-antes — el reloj de quienes defienden · uso defensivo ·
+      <a href="https://github.com/inematds/corrija-antes">inematds/corrija-antes</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='corrija-antes-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; }
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      localStorage.setItem(KEY, light?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

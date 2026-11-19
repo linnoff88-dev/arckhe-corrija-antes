@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>corrija-antes — The defender’s clock has run out</title>
+<meta name="description" content="An open AI has matched OpenAI’s locked-down hacker AI, and defenders’ head start is gone. A guide with the video, the numbers, and a free, read-only kit that shows what to fix on your machine RIGHT NOW.">
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/corrija-antes/guia/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/corrija-antes/guia/en/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/corrija-antes/guia/es/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#E2A23B; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#b9791d; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:rgba(226,162,59,.12)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  nav .links a.sec{white-space:nowrap}
+  @media(max-width:1300px){nav .links{gap:14px;font-size:.86rem}}
+  @media(max-width:1280px){nav .links a.sec[href="#mudou"],nav .links a.sec[href="#numeros"]{display:none}}
+  @media(max-width:1080px){nav .links a.sec[href="#kits"],nav .links a.sec[href="#video"]{display:none}}
+  @media(max-width:900px){nav .links a.sec{display:none}}
+  .glos{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 22px}
+  .glos h3{font-family:Sora;font-size:1rem;margin:0 0 10px}
+  .glos dl{display:grid;grid-template-columns:minmax(120px,max-content) minmax(0,1fr);gap:8px 16px;margin:0;font-size:.9rem}
+  .glos dt{font-weight:600;color:var(--amb)} .glos dd{margin:0;color:var(--mut)}
+  @media(max-width:540px){.glos dl{grid-template-columns:1fr} .glos dd{margin-bottom:6px}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(226,162,59,.22),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(226,162,59,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:26px}
+  .step>div,.card{min-width:0}
+  p code,li code,td code{overflow-wrap:anywhere}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;height:auto;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+  table.n{width:100%;border-collapse:collapse;font-size:.92rem;margin-top:10px}
+  table.n th,table.n td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left}
+  table.n th{color:var(--amb);font-family:Sora}
+  /* gráficos comparativos (âmbar = agora/realidade, azul = antes/cenário, hachura = projeção) */
+  :root{--c-now:#BF8224;--c-old:#4D8FE0}
+  body.light{--c-now:#B9791D;--c-old:#2F6FC4}
+  .charts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+  @media(max-width:820px){.charts{grid-template-columns:1fr}}
+  .chart{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px}
+  .chart h3{margin:0 0 4px;font-family:Sora;font-size:1.02rem}
+  .chart .cap{color:var(--mut);font-size:.84rem;margin:0 0 14px}
+  .leg{display:flex;flex-wrap:wrap;gap:14px;font-size:.78rem;color:var(--mut);margin-top:10px}
+  .leg i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+  .sw-now{background:var(--c-now)} .sw-old{background:var(--c-old)}
+  .sw-proj{background:repeating-linear-gradient(45deg,var(--c-now) 0 3px,transparent 3px 7px);border:1px solid var(--c-now)}
+  .hb{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+  .hb .g{font-size:.78rem;color:var(--mut);margin-top:6px}
+  .hb .row{display:grid;grid-template-columns:118px minmax(0,1fr);gap:10px;align-items:center;font-size:.82rem}
+  .hb .row>span:first-child{color:var(--mut);line-height:1.25}
+  .hb .trk{position:relative;height:22px}
+  .bar{height:100%;border-radius:0 4px 4px 0;min-width:4px;display:flex;align-items:center}
+  .bar.now{background:var(--c-now)} .bar.old{background:var(--c-old)}
+  .bar.proj{background:repeating-linear-gradient(45deg,var(--c-now) 0 3px,transparent 3px 7px);border:1px solid var(--c-now)}
+  .bar b{position:absolute;left:calc(var(--w) + 8px);font-weight:600;font-size:.8rem;color:var(--txt);white-space:nowrap}
+  .vb{display:flex;align-items:flex-end;gap:6px;height:190px;border-bottom:1px solid var(--line);padding-top:22px}
+  .vb .col{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;position:relative}
+  .vb .col .v{font-size:.74rem;font-weight:600;color:var(--txt);margin-bottom:3px}
+  .vb .col .b{width:100%;max-width:38px;border-radius:4px 4px 0 0;min-height:2px}
+  .vb .col .b.now{background:var(--c-now)} .vb .col .b.old{background:var(--c-old)}
+  .vb .col .b.proj{background:repeating-linear-gradient(45deg,var(--c-now) 0 3px,transparent 3px 7px);border:1px solid var(--c-now);border-bottom:none}
+  .vb .gap{flex:0 0 14px;align-self:center;color:var(--mut);text-align:center}
+  .vx{display:flex;gap:6px;font-size:.72rem;color:var(--mut);margin-top:6px}
+  .vx span{flex:1;text-align:center} .vx .gap{flex:0 0 14px}
+  /* relatórios originais + gráficos originais + ajuste */
+  .reps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-bottom:46px}
+  .rep{display:flex;flex-direction:column;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;color:var(--txt)}
+  .rep:hover{border-color:var(--amb)}
+  .rep .tag{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--amb);font-family:Sora;font-weight:600}
+  .rep strong{font-family:Sora;font-size:1.25rem}
+  .rep span{color:var(--mut);font-size:.93rem}
+  .rep em{font-style:normal;color:var(--amb);font-weight:600;font-size:.88rem;margin-top:auto}
+  .h3o{font-family:Sora;font-size:1.35rem;margin:0 0 .2em}
+  .origs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+  .orig{margin:0;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+  .orig img{display:block;width:100%;height:auto;background:#fff}
+  .orig figcaption{padding:16px 18px;display:flex;flex-direction:column;gap:8px;font-size:.9rem}
+  .orig figcaption b{font-family:Sora;font-size:1.02rem}
+  .orig figcaption span{color:var(--mut)} .orig figcaption i{font-style:normal;color:var(--amb);font-weight:600}
+  .ajuste{margin-top:52px}
+  .aj{border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .ajrow{display:grid;grid-template-columns:1.5fr 1fr 1fr .9fr;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);align-items:center;font-size:.92rem}
+  .ajrow:last-child{border-bottom:none}
+  .ajrow small{display:block;color:var(--mut);font-size:.78rem;font-weight:400}
+  .ajhead{background:var(--bg2);font-family:Sora;font-weight:600;color:var(--amb);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}
+  .ajrow .old{color:var(--c-old);font-weight:600} .ajrow .now{color:var(--c-now);font-weight:700}
+  .ajrow .dif{font-family:Sora;font-weight:800;color:var(--amb)}
+  .aj-em{margin-top:18px;background:rgba(226,162,59,.08);border:1px solid rgba(226,162,59,.35);border-radius:14px;padding:18px 20px}
+  .aj-em small{display:block;color:var(--mut);margin-top:10px;font-size:.82rem}
+  @media(max-width:820px){.reps,.origs{grid-template-columns:1fr}
+    .ajhead{display:none}
+    .ajrow{grid-template-columns:1fr 1fr;gap:8px 14px}
+    .ajrow>span:first-child{grid-column:1/-1}
+    .ajrow .dif{grid-column:1/-1}}
+  /* cenário original com projeções por cima + explicações */
+  .cen{margin-bottom:52px}
+  .kbox{display:flex;flex-direction:column;gap:7px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--amb);border-radius:12px;padding:16px 18px;margin:0 0 22px;font-size:.9rem}
+  .kbox span{color:var(--mut)} .kbox i:not(.sw){font-style:normal;color:var(--txt);font-weight:600}
+  .kbox .sw{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:7px;vertical-align:-1px}
+  .ov{position:relative;background:#fff}
+  .ov .pa{position:absolute;left:0;right:0;pointer-events:none}
+  .ov .vl{position:absolute;top:0;bottom:0;border-left:3px dashed #16a34a}
+  .ov .vl.old{border-left-color:#2563eb}
+  .ov .band{position:absolute;top:0;bottom:0;background:rgba(226,162,59,.32);border-left:2px solid #d97706;border-right:2px solid #d97706}
+  .ov .band.ted{background:repeating-linear-gradient(45deg,rgba(147,51,234,.22) 0 6px,rgba(147,51,234,.08) 6px 12px);border-color:#9333ea}
+  .ov em,.mk em{font-style:normal;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font:800 .75rem Sora,sans-serif;color:#fff;background:#16a34a}
+  .ov em{position:absolute;top:-4px;left:50%;transform:translateX(-50%);box-shadow:0 1px 4px rgba(0,0,0,.35)}
+  .ov .vl em{left:-1.5px}
+  .ov .vl.old em,.mk em.old{background:#2563eb}
+  .ov .band em,.mk em.band{background:#d97706} .ov .band.ted em,.mk em.ted{background:#9333ea}
+  .mk{list-style:none;margin:2px 0;padding:0;display:flex;flex-direction:column;gap:6px;color:var(--mut)}
+  .mk li{position:relative;padding-left:30px;min-height:22px} .mk li>em{position:absolute;left:0;top:1px}
+  .ov .band em{top:auto;bottom:6px}
+  .exp{color:var(--mut);font-size:.86rem;margin:12px 0 0;padding-top:12px;border-top:1px dashed var(--line)}
+  .exp b{color:var(--amb)}
+  /* plano de ação + animação da janela */
+  .anim{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 22px 18px;margin-bottom:34px}
+  .an-top{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-bottom:26px}
+  .clk{display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--mut)} .clk b{color:var(--amb)}
+  .dial{position:relative;width:42px;height:42px;border-radius:50%;border:3px solid var(--c-old)}
+  .dial.now{border-color:var(--c-now)}
+  .hand{position:absolute;left:50%;bottom:50%;width:3px;height:15px;margin-left:-1.5px;border-radius:2px;background:var(--txt);transform-origin:50% 100%}
+  .anim.run .hand.slow{animation:spin 3s linear infinite} .anim.run .hand.fast{animation:spin 1.765s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .replay{margin-left:auto;background:var(--bg2);border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:.45em .9em;cursor:pointer;font:600 .85rem Sora,sans-serif}
+  .replay:hover{border-color:var(--amb)}
+  .an-axis{position:relative;height:34px;margin:0 8% 6px 150px;border-bottom:1px solid var(--line);font-size:.74rem;color:var(--mut)}
+  .an-axis span{position:absolute;bottom:4px;transform:translateX(-50%);text-align:center;line-height:1.15;white-space:nowrap}
+  .an-axis span:first-child{transform:none}
+  .trk2{display:grid;grid-template-columns:140px minmax(0,1fr);gap:10px;align-items:center;margin:18px 8% 0 0}
+  .trk2 .lbl{font:600 .82rem Sora,sans-serif;color:var(--mut)}
+  .lane{position:relative;height:30px;background:var(--bg2);border-radius:8px;margin-bottom:46px}
+  .fill{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:8px}
+  .fill.old{background:var(--c-old)} .fill.now{background:var(--c-now)}
+  .zone{position:absolute;top:-4px;bottom:-4px;background:repeating-linear-gradient(45deg,rgba(226,162,59,.35) 0 5px,transparent 5px 10px);border:1px dashed var(--c-now);border-radius:6px}
+  .pin{position:absolute;top:-6px;bottom:-6px;border-left:3px solid var(--c-old);opacity:.25;transition:opacity .4s}
+  .pin.now{border-color:var(--c-now)} .pin.on{opacity:1}
+  .pin em{position:absolute;top:100%;margin-top:4px;font-style:normal;font-size:.72rem;font-weight:600;white-space:nowrap;transform:translateX(-100%);color:var(--txt)}
+  .pin.now em{transform:none;left:4px}
+  .pin small{position:absolute;bottom:100%;margin-bottom:2px;font-size:.72rem;color:var(--mut);white-space:nowrap;transform:translateX(-50%)}
+  .cnt{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:.8rem;color:#fff;font-weight:600;white-space:nowrap;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+  .cnt b{font:800 1.05rem Sora,sans-serif}
+  .an-cap{color:var(--mut);font-size:.9rem;margin:0}
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .vcol{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+  .vcol.old{border-top:4px solid var(--c-old)} .vcol.now{border-top:4px solid var(--c-now)}
+  .vcol .tag{font:600 .74rem Sora,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+  .vcol h3{font-family:Sora;margin:.4em 0 .7em;font-size:1.1rem}
+  .vcol ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;color:var(--mut);font-size:.9rem}
+  .vcol li b{color:var(--txt)}
+  .steps2{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+  .st{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px;font-size:.86rem}
+  .st .when{font:800 .78rem Sora,sans-serif;color:var(--amb);text-transform:uppercase;letter-spacing:.05em}
+  .st b{font-family:Sora;font-size:.98rem} .st>span:last-child{color:var(--mut)}
+  .st code{font-size:.8rem;color:var(--amb2)}
+  @media(max-width:1000px){.steps2{grid-template-columns:1fr 1fr}}
+  @media(max-width:700px){.vs,.steps2{grid-template-columns:1fr}
+    .an-axis{margin-left:0;margin-right:12%} .trk2{grid-template-columns:1fr;gap:24px;margin-right:12%}}
+  /* parte técnica isolada embaixo */
+  .techhead{background:var(--bg2);border-top:3px solid var(--amb);padding:58px 0 8px}
+  .techhead h2{font-family:Sora;margin:.3em 0 0}
+  .techzone{background:var(--bg2)}
+  .caso-cta{display:flex;flex-direction:column;gap:6px;margin-top:26px;background:var(--card);border:1px solid var(--amb);border-radius:16px;padding:20px 22px;color:var(--txt)}
+  .caso-cta:hover{background:var(--bg2)} .caso-cta b{font:800 1.2rem Sora,sans-serif} .caso-cta>span:last-child{color:var(--mut)}
+</style>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top"><span class="emoji">🛡️</span> corrija-antes</a>
+  <span class="sep">|</span>
+  <span class="clubpro">
+    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <span class="sep">-</span>
+    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  </span>
+  <div class="links">
+    <a class="sec" href="#video">Video</a>
+    <a class="sec" href="#mudou">What changed</a>
+    <a class="sec" href="#numeros">Numbers</a>
+    <a class="sec" href="#acao">Action plan</a>
+    <a class="sec" href="#kits">Other kits</a>
+    <a class="sec" href="#tecnico">Kit (technical)</a>
+    <span class="lang"><a href="../">PT</a><a class="on" href="./">EN</a><a href="../es/">ES</a></span>
+    <button class="tgl" id="themeToggle" aria-label="Switch theme" title="Switch theme">🌙</button>
+    <a class="btn" href="https://github.com/inematds/corrija-antes" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="chip">corrija-antes · free kit · Python · read-only</span>
+      <h1>The defender’s clock has <span class="amb">run out</span></h1>
+      <p class="lead">An open AI that anyone can download for free broke into a company network at the same level as OpenAI’s locked-down hacker AI. Defenders’ months-long head start is gone. This guide explains what changed and includes a free kit that tells you in seconds what to fix RIGHT NOW on your computer or server.</p>
+      <div class="cta">
+        <a class="btn" href="#video">Understand it in 5 minutes</a>
+        <a class="btn ghost" href="https://github.com/inematds/corrija-antes" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+    </div>
+    <figure><img src="../assets/banner-en.jpg" alt="Fix it first: the defender’s clock has run out. Red clock at 00:00:00 beside a server shield"></figure>
+  </div>
+</header>
+
+<section id="resumo" class="resumo"><div class="wrap">
+  <span class="chip">In brief</span>
+  <p>Until July 2026, open AIs were <strong>4 to 7 months</strong> behind closed models in attack capabilities. That was enough time for a company to test and apply a fix. In October, a penetration test found that gap had fallen to <strong>zero</strong>: DeepSeek’s open AI was neck and neck with OpenAI’s locked-down hacker AI, at one-tenth the price. The defense that still works is unglamorous: <strong>update faster, monitor your network, and find your own holes before others do</strong>. This guide explains what happened and ends with an action plan. At the end, there’s a separate free kit that diagnoses your machine by only reading it.</p>
+  <figure style="margin:22px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="../assets/banner-grade-en.jpg" alt="Fix it first: pending updates, open ports, SSH and firewall, secrets in git, AI review, and weekly routine" loading="lazy" style="width:100%;display:block"></figure>
+</div></section>
+
+<section id="video"><div class="wrap">
+  <span class="chip">Video</span>
+  <h2>The story in <span class="amb">5 minutes</span></h2>
+  <p class="sub">OpenAI’s vault, the test that scared everyone, the trick that got DeepSeek there, and what you need to do to protect yourself.</p>
+  <div style="aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid var(--line)"><iframe referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/1WFT-VgGuPM" title="Video: China released for free the hacker AI OpenAI locked away" style="width:100%;height:100%;border:0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+  <p class="mut" style="margin-top:12px"><a href="https://www.youtube.com/watch?v=1WFT-VgGuPM" target="_blank" rel="noopener">▶ Watch on YouTube</a> · <a href="https://youtube.com/shorts/-R65CemeRvc" target="_blank" rel="noopener">Vertical version (mobile)</a></p>
+</div></section>
+
+<section id="mudou"><div class="wrap">
+  <span class="chip">What changed</span>
+  <h2>From a locked vault to a <span class="amb">download button</span></h2>
+  <p class="sub">Four scenes explain why your time to fix things has shrunk.</p>
+  <div class="ex">
+    <figure><img src="../assets/v-cofre.jpg" alt="Closed bank vault door with fingerprint reader, passport, and physical key" loading="lazy"><figcaption><b>1. The vault.</b> OpenAI only releases its hacker AI through the Daybreak program: verified identity, monitored use, signed contract, and a physical key. The regular model completes 1.5% of advanced attack requests; the specialist inside the vault completes 95%.</figcaption></figure>
+    <figure><img src="../assets/v-alarme.jpg" alt="Pliers cutting the red wire of an alarm" loading="lazy"><figcaption><b>2. The alarm is cut.</b> In September, DeepSeek released V4.1 Flash, an open model with a free license. A few days later, someone published a version without the safeguard that makes the AI refuse requests. The AI knows just as much; it simply stops saying no. To use it, all you need is a credit card or a powerful computer.</figcaption></figure>
+    <figure><img src="../assets/v-ladrao.jpg" alt="Hooded figure with a huge ring of keys at a back door" loading="lazy"><figcaption><b>3. Cheap persistence.</b> DeepSeek doesn’t win by being brilliant; it wins because it doesn’t give up. It’s like a thief testing ten thousand cheap keys one by one. If each key costs almost nothing, they can get in before sunrise. An attacker doesn’t need to be the best; they need to be good enough, many times over.</figcaption></figure>
+    <figure><img src="../assets/v-relogio.jpg" alt="Red digital stopwatch reading 00:00:00 in a data center corridor" loading="lazy"><figcaption><b>4. Time ran out.</b> OpenAI’s plan was to give defenders more time. In July, the British safety institute measured a head start of 4 to 7 months. In October, on this test network, that head start was gone. The problem isn’t that Chinese AI is smarter: it’s that it’s everywhere.</figcaption></figure>
+  </div>
+</div></section>
+
+<section id="numeros"><div class="wrap">
+  <span class="chip">Numbers</span>
+  <h2>The test that <span class="amb">scared everyone</span></h2>
+  <p class="sub">Testing company Vals set up fake companies with real networks and let each AI loose on its own, without human help. The target was the company’s “key cabinet”: whoever gets that cabinet controls the building.</p>
+  <div class="charts">
+   <div class="chart"><h3>Goals completed on the first network</h3><p class="cap">Average goals achieved, out of 21 possible.</p>
+    <div class="hb" role="img" aria-label="DeepSeek 16.3 out of 21; OpenAI 15.7 out of 21">
+      <div class="row"><span>DeepSeek (open)</span><div class="trk" title="DeepSeek: 16.3 out of 21"><div class="bar now" style="--w:62%;width:62%"><b>16.3</b></div></div></div>
+      <div class="row"><span>OpenAI (locked down)</span><div class="trk" title="OpenAI: 15.7 out of 21"><div class="bar old" style="--w:59.7%;width:59.7%"><b>15.7</b></div></div></div>
+    </div>
+    <div class="leg"><span><i class="sw-now"></i>Open AI</span><span><i class="sw-old"></i>Locked-down AI</span></div>
+    <p class="exp"><b>What this means:</b> on this network, the AI anyone can download beat the one in the vault. Across all tests overall, OpenAI still wins (<strong>80.8% versus 72.8%</strong>), but the difference is now small.</p>
+   </div>
+   <div class="chart"><h3>Cost per attempt</h3><p class="cap">Average cost of one attack round, in dollars.</p>
+    <div class="hb" role="img" aria-label="DeepSeek under 3 dollars; OpenAI about 22 dollars">
+      <div class="row"><span>DeepSeek</span><div class="trk" title="DeepSeek: under US$ 3"><div class="bar now" style="--w:8.2%;width:8.2%"><b>&lt; US$ 3</b></div></div></div>
+      <div class="row"><span>OpenAI</span><div class="trk" title="OpenAI: about US$ 22"><div class="bar old" style="--w:60%;width:60%"><b>~ US$ 22</b></div></div></div>
+    </div>
+    <div class="leg"><span><i class="sw-now"></i>Open AI</span><span><i class="sw-old"></i>Locked-down AI</span></div>
+    <p class="exp"><b>What this means:</b> with the same budget, attackers can try <strong>seven times more</strong>. In another test, DeepSeek was only 4 points behind while being <strong>19 times cheaper</strong>.</p>
+   </div>
+   <div class="chart"><h3>The defenders’ head start</h3><p class="cap">How far behind closed models open AIs were in attack capabilities.</p>
+    <div class="hb" role="img" aria-label="July 2026: 4 to 7 months; October 2026: zero">
+      <div class="row"><span>July/2026</span><div class="trk" title="July 2026: 4 to 7 months"><div class="bar old" style="--w:55%;width:55%"><b>4 to 7 months</b></div></div></div>
+      <div class="row"><span>October/2026</span><div class="trk" title="October 2026: zero"><div class="bar now" style="--w:0.6%;width:0.6%"><b>zero</b></div></div></div>
+    </div>
+    <p class="exp"><b>What this means:</b> four months is how long it takes a hospital to test and apply a fix. That time is gone. What the best AI could do four months ago, anyone with a laptop can do tonight.</p>
+   </div>
+   <div class="chart"><h3>Same question, two answers</h3><p class="cap">Advanced attack requests completed by each OpenAI model.</p>
+    <div class="hb" role="img" aria-label="Regular model 1.5%; specialist model 95%">
+      <div class="row"><span>Regular model</span><div class="trk" title="Regular model: 1.5%"><div class="bar old" style="--w:1.3%;width:1.3%"><b>1.5%</b></div></div></div>
+      <div class="row"><span>Vault specialist</span><div class="trk" title="Specialist: 95%"><div class="bar old" style="--w:72%;width:72%"><b>95%</b></div></div></div>
+    </div>
+    <p class="exp"><b>What this means:</b> the safeguard is what separates “no” from “here’s how to do it.” When model weights (the model file) are public, someone can remove the safeguard. And in a safety test, after being told it would be shut down, this AI disabled its own shutdown in <strong>39%</strong> of cases.</p>
+   </div>
+  </div>
+  <p class="mut" style="margin-top:18px;font-size:.86rem">According to an unproven report, some of DeepSeek’s capabilities may have come from answers copied from OpenAI’s own model. Researchers have also found real attacks against governments using DeepSeek alongside other tools.</p>
+</div></section>
+
+<section id="acao"><div class="wrap">
+  <span class="chip">Action plan</span>
+  <h2>Lasting defense is <span class="amb">unglamorous</span></h2>
+  <p class="sub">The same skill that breaks in can find the hole before an attacker does, and defenders can use it today without asking anyone’s permission. Three habits, every week:</p>
+  <div class="grid g3">
+    <div class="card"><h3>⏱️ 1. Update faster</h3><p>Security fixes can’t wait until next month. On a set day each week: back up, check that everything is healthy, update, test. Start with anything exposed to the internet (server, website, router) and anything that stores data.</p></div>
+    <div class="card"><h3>📡 2. Monitor your network</h3><p>Know what’s exposed. Databases, Redis, local AI, and remote desktop access should never accept connections from anywhere. SSH should use keys only, never passwords. Keep the firewall on, and remember Docker can publish ports around it.</p></div>
+    <div class="card"><h3>🔎 3. Find your own holes first</h3><p>Have the same AI review <strong>your</strong> code: a forgotten password in the project, a route with no login, a price set by the browser. Find and fix what an attacker could find overnight.</p></div>
+  </div>
+  <div class="glos"><h3>📖 Words you’ll see here</h3><dl>
+    <dt>Port</dt><dd>the “entry point” a program uses to receive connections. Open “to the network” means other machines can connect to it.</dd>
+    <dt>SSH</dt><dd>the way you connect to a server through the terminal. With passwords, bots try thousands each day; keys stop that.</dd>
+    <dt>Firewall</dt><dd>the machine’s gatekeeper: it decides which ports accept visitors from outside.</dd>
+    <dt>Docker</dt><dd>a program that runs systems in “boxes” (containers). When it publishes a port, it bypasses Linux’s regular firewall (ufw).</dd>
+    <dt>Database, Redis</dt><dd>where an app stores data. Redis is a fast memory store that comes without a password.</dd>
+    <dt>Local AI (Ollama)</dt><dd>an AI model running on your computer. If it’s open to the network, anyone can use your machine for free.</dd>
+    <dt>Route without login</dt><dd>an app address that returns data without checking who is asking.</dd>
+    <dt>Secret, .env</dt><dd>service passwords and keys. <code>.env</code> is the file where they’re often stored and should never be committed to git (the code history).</dd>
+  </dl></div>
+  <div class="ex" style="margin-top:22px">
+    <figure><img src="../assets/v-defensor.jpg" alt="Security analyst seen from behind in front of a screen with a blue shield blocking alerts" loading="lazy"><figcaption><b>Start with this:</b> what the world’s best AI could do four months ago, anyone can do today. The window didn’t close with a break-in; it closed with a download button.</figcaption></figure>
+    <figure><img src="../assets/v-fecha.jpg" alt="Technician’s hand closing a server rack door with green lights on" loading="lazy"><figcaption><b>In 20 minutes a week,</b> the kit below shows what to fix RIGHT NOW and what can wait until the week, without changing anything on its own. <a href="#guia">How to use it ↓</a></figcaption></figure>
+  </div>
+</div></section>
+
+<section id="kits"><div class="wrap">
+  <span class="chip">Auditing and diagnostic kits we already have</span>
+  <h2>Go deeper: <span class="amb">other INEMA kits</span></h2>
+  <p class="sub">Each one covers a different area. All are free, defensive, and run on your own systems.</p>
+  <div class="grid g3">
+    <a class="card" href="https://inematds.github.io/auditoria-seguranca/guia/" target="_blank" rel="noopener"><h3>🛡️ auditoria-seguranca</h3><p>Checks whether your server’s programs still trust security certificates whose keys have leaked, and whether PHP (the language behind many sites, such as WordPress) has a serious October vulnerability. Good for servers and automation.</p></a>
+    <a class="card" href="https://inematds.github.io/blinda-site/guia/" target="_blank" rel="noopener"><h3>🧱 blinda-site</h3><p>An inside look at your website’s security: a plan, backup, simulation, and two risk levels.</p></a>
+    <a class="card" href="https://inematds.github.io/invada-seu-proprio-app/guia/" target="_blank" rel="noopener"><h3>🕵️ invada-seu-proprio-app</h3><p>The 5 most common security holes in AI-built apps (password reset, comments, chatbot, pricing, agent), tested on your test copy.</p></a>
+    <a class="card" href="https://inematds.github.io/agente-blindado/guia/" target="_blank" rel="noopener"><h3>🤖 agente-blindado</h3><p>5 safeguards against prompt injection (hidden text in an email or page that becomes an instruction for the agent) and 10 attacks to test yours.</p></a>
+    <a class="card" href="https://inematds.github.io/caixa-do-agente/guia/" target="_blank" rel="noopener"><h3>📦 caixa-do-agente</h3><p>Scores your coding agent’s setup (Claude Code, Codex, DeepSeek) and runs it in a disposable box, without internet or your passwords.</p></a>
+    <a class="card" href="https://inematds.github.io/ia-sem-censura-defensiva/guia/" target="_blank" rel="noopener"><h3>🔓 ia-sem-censura-defensiva</h3><p>An open model without safeguards, used the right way: for defense only, running on your machine.</p></a>
+    <a class="card" href="https://inematds.github.io/protegendo-seus-repos/guia/" target="_blank" rel="noopener"><h3>💾 protegendo-seus-repos</h3><p>Three-layer backup for your repositories against account lockouts or break-ins.</p></a>
+  </div>
+</div></section>
+
+<div id="tecnico" class="techhead"><div class="wrap">
+  <span class="chip">Technical section</span>
+  <h2>The kit: <span class="amb">for anyone who wants to check their own machine</span></h2>
+  <p class="sub">The technical section starts here: download, run the diagnosis, and read the report. You <strong>don’t need</strong> this section to understand what’s above.</p>
+</div></div>
+
+<div class="techzone">
+<section id="oque"><div class="wrap">
+  <span class="chip">What it is</span>
+  <h2>A diagnosis that <span class="amb">only reads</span></h2>
+  <p class="sub">For defensive use: run it only on your own machine and repositories. The kit doesn’t install, update, fix, scan other machines, or send anything out: it only queries your own system's update servers.</p>
+  <div class="grid g3">
+    <div class="card"><h3>⏰ relogio.py</h3><p>Checks the 3 areas (update, monitor the network, your own holes) in seconds and assigns each finding a priority: AGORA, SEMANA, SEM TESTE, or OK. Saves <code>relatorio.md</code> and <code>relatorio.json</code>, with IP addresses and machine name masked.</p></div>
+    <div class="card"><h3>🤖 Review prompt</h3><p><code>prompts/revisao-com-ia.md</code> asks Claude Code, Codex, or a local model to review your code by only reading it, then return a table ranked from most to least serious.</p></div>
+    <div class="card"><h3>📅 Weekly routine</h3><p><code>ROTINA.md</code>: 20 minutes on a set day. Back up, check system health first, fix AGORA items one at a time, test, and run the clock again.</p></div>
+  </div>
+</div></section>
+
+<section id="fluxo"><div class="wrap">
+  <span class="chip">How it works</span>
+  <h2>From diagnosis to <span class="amb">fix</span></h2>
+  <div class="flow">
+    <span>relogio.py reads the machine</span><span class="arr">→</span>
+    <span>lists AGORA / SEMANA</span><span class="arr">→</span>
+    <span>backup + health check</span><span class="arr">→</span>
+    <span>you fix it</span><span class="arr">→</span>
+    <span>AI reviews the code</span><span class="arr">→</span>
+    <span>relogio.py again</span>
+  </div>
+  <table class="n">
+    <tr><th>Area</th><th>What it checks</th></tr>
+    <tr><td>1. Update</td><td>System security updates (apt, dnf, Homebrew, macOS), snaps, global npm packages, Docker images in use that are over 4 months old, pending restart, and how many days since the last update.</td></tr>
+    <tr><td>2. Monitor the network</td><td>What listens only on the machine, only on the internal network/VPN, or on any network; critical ports (databases, Redis, Ollama, VNC/RDP, Docker API); firewall; SSH with password or root; ports Docker publishes around ufw.</td></tr>
+    <tr><td>3. Your own holes</td><td>With <code>--repo</code>: <code>.env</code> tracked by git, <code>.gitignore</code> without <code>.env</code>, keys and tokens in code (values are masked), dependencies that haven’t been updated for over 4 months. Recognized formats: AWS, OpenAI/Anthropic, DeepSeek, OpenRouter, Stripe, GitHub, Slack (token and webhook), Google, Telegram, Mercado Pago, Groq, Hugging Face, GitLab, SendGrid, npm, Resend, Supabase service_role, private key, password in a database URL, and <code>wp-config.php</code> passwords/keys. It only reads the current files, not the git history; a generic password (<code>password=…</code>) or keys from other services go unnoticed.</td></tr>
+  </table>
+  <table class="n" style="margin-top:18px">
+    <tr><th>Priority</th><th>Meaning</th></tr>
+    <tr><td><b>AGORA</b> (now)</td><td>security update waiting, database/Redis/Ollama/remote desktop open to the network, SSH with password, secret in code</td></tr>
+    <tr><td><b>SEMANA</b> (this week)</td><td>regular update, open port to check, firewall off, old Docker image, <code>.env</code> missing from <code>.gitignore</code>, key that looks like an example</td></tr>
+    <tr><td><b>SEM TESTE</b> (not tested)</td><td>couldn’t check (missing permission or tool). This does not count as secure.</td></tr>
+    <tr><td><b>OK</b></td><td>checked and up to date</td></tr>
+  </table>
+</div></section>
+
+<section id="pre"><div class="wrap">
+  <span class="chip">Requirements</span>
+  <h2>Just <span class="amb">Python 3</span></h2>
+  <p class="sub">Linux or macOS. No packages to install, no keys. Without <code>sudo</code>, some items will be marked SEM TESTE and the script will say which command to run to check them.</p>
+  <div class="grid g3">
+    <div class="card"><h3>🐍 Python 3</h3><p>Already included with Linux and macOS. Check:</p><pre><span class="k">python3 --version</span></pre></div>
+    <div class="card"><h3>📥 The kit</h3><p>With git, clone it. Without git, <a href="https://github.com/inematds/corrija-antes/archive/refs/heads/main.zip">download the ZIP</a> and open a terminal in the <code>corrija-antes-main</code> folder.</p><pre><span class="k">git clone https://github.com/inematds/corrija-antes</span>
+<span class="k">cd corrija-antes</span></pre></div>
+    <div class="card"><h3>📁 One of your projects</h3><p>For area 3, the folder of one of your git repositories (website, app, automation). Without it, the kit checks only the machine.</p></div>
+  </div>
+</div></section>
+
+<section id="guia"><div class="wrap">
+  <span class="chip">How to use · step by step</span>
+  <h2>In <span class="amb">20 minutes</span></h2>
+
+  <div class="step"><div class="b">1</div><div>
+    <h3>Run the clock</h3>
+    <p>In the kit folder, replace <code>~/seu-projeto</code> with your project folder. It takes a few seconds.</p>
+<pre><span class="k">python3 relogio.py --repo ~/seu-projeto --saida relatorio</span>
+<span class="c"># one area only: --blocos atualize | vigie | codigo</span>
+<span class="c"># multiple projects: repeat --repo</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">2</div><div>
+    <h3>Read the list</h3>
+    <p>The screen shows items by area, from most urgent to OK, and tells you what to do for each one. The same report is saved to <code>relatorio/relatorio.md</code>. The exit code is <code>1</code> when there’s an AGORA item (useful for automation).</p>
+<pre><span class="c"># the script prints its report in Portuguese</span>
+<span class="c">== VIGIE A REDE ==</span>
+  [AGORA] Porta 6379 aberta para a rede: Redis escutando em todos os endereços
+      → Se só você usa: prender em 127.0.0.1 na configuração do serviço.
+  [SEMANA] Firewall (ufw): ufw instalado mas DESLIGADO</pre>
+  </div></div>
+
+  <div class="step"><div class="b">3</div><div>
+    <h3>Back up and check system health before making changes</h3>
+    <p>Back up the database, volumes, and configuration. Check that everything works <strong>before</strong> making changes, so you’ll know if an update broke something.</p>
+  </div></div>
+
+  <div class="step"><div class="b">4</div><div>
+    <h3>Fix AGORA items one at a time</h3>
+    <p>The most common issues and how to fix them:</p>
+<pre><span class="c"># system security update (Ubuntu/Debian)</span>
+<span class="k">sudo apt update &amp;&amp; sudo apt upgrade</span>
+<span class="c"># container port open to everyone: in docker-compose.yml replace</span>
+<span class="s">"5432:5432"</span>  <span class="c"># with:</span>  <span class="s">"127.0.0.1:5432:5432"</span>
+<span class="c"># SSH with password: after logging in with a key, in /etc/ssh/sshd_config</span>
+<span class="s">PasswordAuthentication no</span></pre>
+    <p>Secret in code: replace the key in the service dashboard. Deleting it from the file isn’t enough, because it remains in git history.</p>
+  </div></div>
+
+  <div class="step"><div class="b">5</div><div>
+    <h3>Have AI find the rest</h3>
+    <p>The script only finds obvious issues. For logic errors (a route without login, a price set by the browser), use AI. Open Claude Code, Codex, or a local model in the project folder and paste in the prompt from <a href="https://github.com/inematds/corrija-antes/blob/main/prompts/revisao-com-ia.md" target="_blank" rel="noopener">prompts/revisao-com-ia.md</a> (in Portuguese). Then run the clock again:</p>
+<pre><span class="k">python3 relogio.py --blocos codigo --repo ~/seu-projeto</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">6</div><div>
+    <h3>Every Monday, at the same time (optional)</h3>
+    <p>Cron runs the clock and saves the report. It still only reads: you make the fixes. A separate folder for each date makes it easy to compare with the previous week. Details in <a href="https://github.com/inematds/corrija-antes/blob/main/ROTINA.md" target="_blank" rel="noopener">ROTINA.md</a> (in Portuguese).</p>
+<pre><span class="k">crontab -e</span>
+<span class="c"># add (replace the paths):</span>
+<span class="s">0 9 * * 1 python3 ~/corrija-antes/relogio.py --repo ~/seu-projeto --saida ~/relogio/$(date +\%F) &gt;/dev/null 2&gt;&amp;1</span></pre>
+  </div></div>
+</div></section>
+
+<section id="exemplos"><div class="wrap">
+  <span class="chip">Example</span>
+  <h2>A <span class="amb">real</span> report, with made-up data</h2>
+  <p class="sub">A fictional shop server: 8 items marked AGORA, 6 for the week. The full report is in <a href="https://github.com/inematds/corrija-antes/blob/main/exemplos/relatorio-exemplo.md" target="_blank" rel="noopener">exemplos/relatorio-exemplo.md</a> (in Portuguese).</p>
+  <table class="n">
+    <tr><th>Priority</th><th>Item</th><th>What to do</th></tr>
+    <tr><td><b>AGORA</b></td><td>2 system security updates (openssl, openssh-server); last update was 52 days ago</td><td>back up, <code>apt upgrade</code>, update every week</td></tr>
+    <tr><td><b>AGORA</b></td><td>Redis (6379) and Ollama (11434) open to the network</td><td>bind to 127.0.0.1</td></tr>
+    <tr><td><b>AGORA</b></td><td>SSH accepts passwords</td><td>log in with a key and turn off password login</td></tr>
+    <tr><td><b>AGORA</b></td><td>Container’s Postgres published to everyone (around ufw)</td><td>bind to 127.0.0.1 in <code>docker-compose.yml</code></td></tr>
+    <tr><td><b>AGORA</b></td><td><code>.env</code> tracked by git and key in <code>pagamento.js</code></td><td>replace the keys, remove them from git</td></tr>
+    <tr><td>SEMANA</td><td>ufw off, Postgres image is 559 days old, npm and snaps</td><td>during the weekly maintenance window</td></tr>
+  </table>
+</div></section>
+
+<section id="roadmap"><div class="wrap">
+  <span class="chip">Roadmap</span>
+  <h2>Next steps</h2>
+  <div class="phase"><div class="tag">Today</div><div class="d"><strong>Clock, prompt, and routine</strong><span>A read-only script, 82 tests with made-up data, Linux and macOS.</span></div></div>
+  <div class="phase"><div class="tag">Next</div><div class="d"><strong>Compare weeks</strong><span>Read two <code>relatorio.json</code> files and show what was fixed and what appeared.</span></div></div>
+  <div class="phase"><div class="tag">Later</div><div class="d"><strong>Windows</strong><span>The same diagnosis using PowerShell commands.</span></div></div>
+</div></section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="pill">Python 3</div><div class="pill">no dependencies</div><div class="pill">read-only</div>
+    <p style="margin-top:18px">corrija-antes — the defender’s clock · defensive use ·
+      <a href="https://github.com/inematds/corrija-antes">inematds/corrija-antes</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='corrija-antes-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; }
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      localStorage.setItem(KEY, light?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

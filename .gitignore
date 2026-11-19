@@ -1,0 +1,7 @@
+relatorio/
+relogio-*/
+__pycache__/
+*.pyc
+logs/
+.env
+.env.*
