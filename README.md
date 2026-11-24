@@ -1,4 +1,4 @@
-﻿> **Uso defensivo:** rode sÃ³ na SUA mÃ¡quina e nos SEUS repositÃ³rios. O kit sÃ³ lÃª: nÃ£o instala, nÃ£o atualiza, nÃ£o corrige, nÃ£o varre outras mÃ¡quinas e nÃ£o envia nada: sÃ³ consulta os servidores de atualizaÃ§Ã£o do seu prÃ³prio sistema.
+> **Uso defensivo:** rode sÃ³ na SUA mÃ¡quina e nos SEUS repositÃ³rios. O kit sÃ³ lÃª: nÃ£o instala, nÃ£o atualiza, nÃ£o corrige, nÃ£o varre outras mÃ¡quinas e nÃ£o envia nada: sÃ³ consulta os servidores de atualizaÃ§Ã£o do seu prÃ³prio sistema.
 
 # corrija-antes â€” o relÃ³gio de quem defende
 
@@ -8,7 +8,7 @@
 </div>
 
 
-[![Corrija antes](guia/assets/banner.jpg)](https://inematds.github.io/corrija-antes/guia/)
+[![Corrija antes](guia/assets/banner.jpg)](https://linnoff88-dev.github.io/
 
 **ðŸ‡§ðŸ‡· [PortuguÃªs](README.md) Â· ðŸ‡ºðŸ‡¸ [English](README.en.md) Â· ðŸ‡ªðŸ‡¸ [EspaÃ±ol](README.es.md)**
 
@@ -18,14 +18,14 @@ Em julho de 2026, as IAs abertas estavam de 4 a 7 meses atrÃ¡s das fechadas em
 
 ## ðŸ“– Guia de uso
 
-Guia completo, com o vÃ­deo: **https://inematds.github.io/corrija-antes/guia/**
+Guia completo, com o vÃ­deo: **https://linnoff88-dev.github.io/
 
 VÃ­deo: [A China soltou de graÃ§a a IA hacker que a OpenAI trancou](https://www.youtube.com/watch?v=1WFT-VgGuPM) Â· [versÃ£o vertical](https://youtube.com/shorts/-R65CemeRvc)
 
 ## Teste em 1 minuto
 
 ```bash
-git clone https://github.com/inematds/corrija-antes.git
+git clone https://github.com/linnoff88-dev/corrija-antes.git
 cd corrija-antes
 python3 relogio.py --repo ~/seu-projeto --saida relatorio
 ```
@@ -71,17 +71,17 @@ CÃ³digo de saÃ­da: `0` = nada para AGORA Â· `1` = tem item AGORA Â· `2` 
 5. ðŸ¤– **IA** (Claude Code, Codex ou modelo local) revisa o seu cÃ³digo com o [prompt de revisÃ£o](prompts/revisao-com-ia.md).
 6. âš™ï¸ **Script** roda de novo para confirmar; opcional: toda segunda pelo cron.
 
-## Para ir mais fundo (kits INEMA de auditoria e diagnÃ³stico)
+## Para ir mais fundo (kits ARCKHÉ de auditoria e diagnÃ³stico)
 
 | Kit | Para quÃª |
 |---|---|
-| [auditoria-seguranca](https://inematds.github.io/auditoria-seguranca/guia/) | testa se suas ferramentas ainda confiam em certificados vazados e se o PHP tem a falha PHP2Shell |
-| [blinda-site](https://inematds.github.io/blinda-site/guia/) | diagnÃ³stico do site por dentro: plano, backup, simulaÃ§Ã£o e nÃ­veis de risco |
-| [invada-seu-proprio-app](https://inematds.github.io/invada-seu-proprio-app/guia/) | as 5 brechas mais comuns de app feito com IA, testadas na sua cÃ³pia de teste |
-| [agente-blindado](https://inematds.github.io/agente-blindado/guia/) | 5 travas contra injeÃ§Ã£o de prompt e 10 ataques para testar o seu agente |
-| [caixa-do-agente](https://inematds.github.io/caixa-do-agente/guia/) | nota do seu harness de agente e uma caixa Docker descartÃ¡vel, sem rede e sem `.env` |
-| [ia-sem-censura-defensiva](https://inematds.github.io/ia-sem-censura-defensiva/guia/) | modelo aberto sem trava, usado sÃ³ para defesa, rodando na sua mÃ¡quina |
-| [protegendo-seus-repos](https://inematds.github.io/protegendo-seus-repos/guia/) | backup em 3 camadas dos seus repositÃ³rios contra bloqueio ou invasÃ£o |
+| [auditoria-seguranca](https://linnoff88-dev.github.io/ | testa se suas ferramentas ainda confiam em certificados vazados e se o PHP tem a falha PHP2Shell |
+| [blinda-site](https://linnoff88-dev.github.io/ | diagnÃ³stico do site por dentro: plano, backup, simulaÃ§Ã£o e nÃ­veis de risco |
+| [invada-seu-proprio-app](https://linnoff88-dev.github.io/ | as 5 brechas mais comuns de app feito com IA, testadas na sua cÃ³pia de teste |
+| [agente-blindado](https://linnoff88-dev.github.io/ | 5 travas contra injeÃ§Ã£o de prompt e 10 ataques para testar o seu agente |
+| [caixa-do-agente](https://linnoff88-dev.github.io/ | nota do seu harness de agente e uma caixa Docker descartÃ¡vel, sem rede e sem `.env` |
+| [ia-sem-censura-defensiva](https://linnoff88-dev.github.io/ | modelo aberto sem trava, usado sÃ³ para defesa, rodando na sua mÃ¡quina |
+| [protegendo-seus-repos](https://linnoff88-dev.github.io/ | backup em 3 camadas dos seus repositÃ³rios contra bloqueio ou invasÃ£o |
 
 ## Testes
 
@@ -90,7 +90,7 @@ python3 testes/run.py        # 82 testes com dados inventados
 python3 testes/gera_exemplo.py   # refaz o relatÃ³rio de exemplo
 ```
 
-Python 3, sem dependÃªncias. ConteÃºdo autoral. LicenÃ§a [MIT](LICENSE). Mais em [INEMA.CLUB](https://inema.club).
+Python 3, sem dependÃªncias. ConteÃºdo autoral. LicenÃ§a [MIT](LICENSE). Mais em [ARCKHÉ AI](https://ARCKHÉ AI).
 
 ---
 
