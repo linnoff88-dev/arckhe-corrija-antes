@@ -6,15 +6,15 @@ Diagnóstico SÓ LEITURA da sua própria máquina e dos seus próprios repositó
   2. VIGIE     — o que está escutando na rede, firewall, SSH e portas que o Docker publica
   3. SEUS BURACOS — segredos dentro do git, .env versionado e dependências paradas (--repo)
 
-Não instala, não atualiza, não corrige, não varre outras máquinas e não chama nenhuma API.
-Cada achado sai com uma prioridade: AGORA, SEMANA, OK ou SEM TESTE (não deu para conferir).
+Nêo instala, nêo atualiza, nêo corrige, nêo varre outras máquinas e nêo chama nenhuma API.
+Cada achado sai com uma prioridade: AGORA, SEMANA, OK ou SEM TESTE (nêo deu para conferir).
 
 Uso:
   python3 relogio.py                          # máquina
   python3 relogio.py --repo ~/meu-app         # máquina + o repositório (repita --repo)
   python3 relogio.py --saida relatorio/       # grava relatorio.md e relatorio.json
   python3 relogio.py --blocos codigo --repo . # só um bloco (atualize, vigie, codigo)
-  python3 relogio.py --mostrar-ips            # o relatório mostra IPs e nome da máquina (padrão: mascarado)
+  python3 relogio.py --mostrar-ips            # o relatório mostra IPs e nome da máquina (padrêo: mascarado)
   python3 relogio.py --json                   # resultado em JSON na tela
 Saída: 0 = nada para AGORA · 1 = tem item AGORA · 2 = erro de uso.
 """
@@ -51,7 +51,7 @@ def achado(bloco, item, nivel, detalhe, corrigir=""):
 
 
 def rodar(cmd, timeout=90):
-    """Roda um comando de leitura. Devolve (rc, saída) ou None se o programa não existe."""
+    """Roda um comando de leitura. Devolve (rc, saída) ou None se o programa nêo existe."""
     if shutil.which(cmd[0]) is None:
         return None
     try:
@@ -117,33 +117,33 @@ def checa_apt(agora=None):
         if velha is not None and velha > 3 else ""
     if seg:
         out.append(achado("atualize", "Correções de segurança do sistema (apt)", "AGORA",
-                          f"{seg} pacote(s) com correção de segurança esperando, de {total} no total. "
+                          f"{seg} pacote(s) com correçêo de segurança esperando, de {total} no total. "
                           f"Ex.: {', '.join(nomes[:6])}{nota}",
                           "Backup e saúde antes; depois `sudo apt update && sudo apt upgrade` e reinicie o que pedir."))
     elif total:
         out.append(achado("atualize", "Pacotes do sistema (apt)", "SEMANA",
-                          f"{total} pacote(s) com versão nova, nenhuma marcada como segurança{nota}",
+                          f"{total} pacote(s) com versêo nova, nenhuma marcada como segurança{nota}",
                           "`sudo apt upgrade` na janela da semana."))
     else:
         out.append(achado("atualize", "Pacotes do sistema (apt)", "SEMANA" if nota else "OK",
                           "nada pendente na lista local" + nota))
-    # há quantos dias foi a última atualização instalada
+    # há quantos dias foi a última atualizaçêo instalada
     ultima = parse_apt_history_ultima(ler("/var/log/apt/history.log"))
     if ultima is None and os.path.exists("/var/log/dpkg.log"):
         ultima = os.path.getmtime("/var/log/dpkg.log")
     if ultima:
         dias = idade_dias(ultima, agora)
         nivel = "AGORA" if dias > 30 and seg else ("SEMANA" if dias > 7 else "OK")
-        out.append(achado("atualize", "Última atualização instalada", nivel,
+        out.append(achado("atualize", "Última atualizaçêo instalada", nivel,
                           f"há {dias} dia(s). Em julho de 2026 quem defendia tinha de 4 a 7 meses de folga; "
-                          "em outubro, num teste de invasão, essa folga foi a zero.",
+                          "em outubro, num teste de invasêo, essa folga foi a zero.",
                           "Atualizar toda semana, num dia fixo." if nivel != "OK" else ""))
     if os.path.exists("/var/run/reboot-required"):
         pk = (ler("/var/run/reboot-required.pkgs") or "").split()
         out.append(achado("atualize", "Reinício pendente", "SEMANA",
                           "o sistema atualizou peças que só valem depois de reiniciar"
                           + (f" ({', '.join(pk[:4])})" if pk else ""),
-                          "Reinicie na janela de manutenção."))
+                          "Reinicie na janela de manutençêo."))
     return out
 
 
@@ -159,7 +159,7 @@ def checa_dnf():
         rs = rodar(["dnf", "-q", "updateinfo", "list", "--security"], timeout=180)
         nseg = len([l for l in (rs[1] if rs else "").splitlines() if l.strip()])
         return [achado("atualize", "Pacotes do sistema (dnf)", "AGORA" if nseg else "SEMANA",
-                       f"{n} pacote(s) com versão nova, {nseg} aviso(s) de segurança",
+                       f"{n} pacote(s) com versêo nova, {nseg} aviso(s) de segurança",
                        "Backup antes; depois `sudo dnf upgrade`.")]
     return [achado("atualize", "Pacotes do sistema (dnf)", "SEM TESTE", saida[:120])]
 
@@ -189,8 +189,8 @@ def checa_macos():
     n = saida.count("* Label:")
     seg = bool(re.search(r"Security|Rapid|Segurança", saida))
     return [achado("atualize", "macOS", ("AGORA" if seg else "SEMANA") if n else "SEM TESTE",
-                   f"{n} atualização(ões) do sistema esperando" if n else saida[:120],
-                   "Ajustes do Sistema → Geral → Atualização de Software.")]
+                   f"{n} atualizaçêo(ões) do sistema esperando" if n else saida[:120],
+                   "Ajustes do Sistema → Geral → Atualizaçêo de Software.")]
 
 
 def parse_snap_refresh(saida):
@@ -213,7 +213,7 @@ def checa_snap():
         return [achado("atualize", "Snaps", "SEM TESTE", saida.strip()[:120])]
     nomes = parse_snap_refresh(saida)
     return [achado("atualize", "Snaps", "SEMANA" if nomes else "OK",
-                   f"{len(nomes)} snap(s) com versão nova: {', '.join(nomes[:6])}" if nomes else "todos em dia",
+                   f"{len(nomes)} snap(s) com versêo nova: {', '.join(nomes[:6])}" if nomes else "todos em dia",
                    "`sudo snap refresh` (o snap também atualiza sozinho, mas pode estar adiado)." if nomes else "")]
 
 
@@ -232,7 +232,7 @@ def checa_npm():
     rc, saida = r
     nomes = parse_npm_outdated(saida)
     if nomes is None:
-        return [achado("atualize", "Pacotes globais do npm", "SEM TESTE", "a resposta do npm não veio em JSON")]
+        return [achado("atualize", "Pacotes globais do npm", "SEM TESTE", "a resposta do npm nêo veio em JSON")]
     return [achado("atualize", "Pacotes globais do npm", "SEMANA" if nomes else "OK",
                    f"{len(nomes)} desatualizado(s): {', '.join(nomes[:6])}" if nomes else "todos em dia",
                    "`npm -g update` (ou `npm -g install <pacote>@latest`), um de cada vez." if nomes else "")]
@@ -350,14 +350,14 @@ def checa_portas(do_docker=()):
                           f"{PORTAS_CRITICAS[p]} escutando em todos os endereços"
                           + (f" (processo {proc})" if proc else "")
                           + ". Se o roteador ou a nuvem deixar passar, qualquer um na internet tenta entrar.",
-                          "Se só você usa: prender em 127.0.0.1 na configuração do serviço. "
+                          "Se só você usa: prender em 127.0.0.1 na configuraçêo do serviço. "
                           "Se outra máquina usa: liberar só o IP dela no firewall, e pôr senha."))
     outras = [p for p in abertas if p not in PORTAS_CRITICAS and p != 22 and p not in do_docker]
     if outras:
         out.append(achado("vigie", "Outras portas abertas para a rede", "SEMANA",
                           f"{len(outras)} porta(s) escutando em todos os endereços: "
                           + ", ".join(f"{p}{'/' + vistas[p][1] if vistas[p][1] else ''}" for p in outras[:15]),
-                          "Para cada uma: precisa estar aberta? Se não, prender em 127.0.0.1 ou desligar o serviço."))
+                          "Para cada uma: precisa estar aberta? Se nêo, prender em 127.0.0.1 ou desligar o serviço."))
     out.append(achado("vigie", "Resumo das portas", "OK",
                       f"{len(locais)} só nesta máquina, {len(internas)} só na rede interna/VPN, "
                       f"{len(abertas)} abertas para qualquer rede"))
@@ -378,14 +378,14 @@ def checa_firewall():
             return [achado("vigie", "Firewall (ufw)", "OK", "ufw ligado (confira as regras com `sudo ufw status`)")]
         return [achado("vigie", "Firewall (ufw)", "SEMANA", "ufw instalado mas DESLIGADO",
                        "Libere antes o que você usa (ex.: `sudo ufw allow OpenSSH`) e depois `sudo ufw enable`. "
-                       "Atenção: portas publicadas pelo Docker passam por cima do ufw.")]
+                       "Atençêo: portas publicadas pelo Docker passam por cima do ufw.")]
     r = rodar(["systemctl", "is-active", "firewalld"])
     if r and r[1].strip() == "active":
         return [achado("vigie", "Firewall (firewalld)", "OK", "firewalld ativo")]
     r = rodar(["systemctl", "is-active", "nftables"])
     if r and r[1].strip() == "active":
         return [achado("vigie", "Firewall (nftables)", "OK", "nftables ativo (confira as regras com `sudo nft list ruleset`)")]
-    return [achado("vigie", "Firewall", "SEM TESTE", "não achei ufw, firewalld nem nftables ativos (pode haver firewall na nuvem/roteador)",
+    return [achado("vigie", "Firewall", "SEM TESTE", "nêo achei ufw, firewalld nem nftables ativos (pode haver firewall na nuvem/roteador)",
                    "Se for servidor na internet: ligue um firewall ou use o da nuvem.")]
 
 
@@ -424,17 +424,17 @@ def checa_ssh(portas_vistas):
     if not os.path.exists("/etc/ssh/sshd_config"):
         return []
     if 22 not in portas_vistas:
-        return [achado("vigie", "SSH", "OK", "servidor SSH instalado mas não escutando na porta 22")]
+        return [achado("vigie", "SSH", "OK", "servidor SSH instalado mas nêo escutando na porta 22")]
     linhas = le_sshd()
     if not linhas:
-        return [achado("vigie", "SSH", "SEM TESTE", "não consegui ler o sshd_config (confira com `sudo sshd -T`)")]
+        return [achado("vigie", "SSH", "SEM TESTE", "nêo consegui ler o sshd_config (confira com `sudo sshd -T`)")]
     senha = valor_sshd(linhas, "PasswordAuthentication", "yes")
     root = valor_sshd(linhas, "PermitRootLogin", "prohibit-password")
     out = []
     if senha == "yes":
         out.append(achado("vigie", "SSH aceita senha", "AGORA",
                           "o SSH aceita login por senha: é a porta que robôs testam com milhares de senhas por dia",
-                          "Entre com chave, confirme que funciona, e então `PasswordAuthentication no` + reiniciar o ssh."))
+                          "Entre com chave, confirme que funciona, e entêo `PasswordAuthentication no` + reiniciar o ssh."))
     if root == "yes":
         out.append(achado("vigie", "SSH aceita root com senha", "AGORA", "PermitRootLogin yes",
                           "Troque para `PermitRootLogin prohibit-password` (ou `no`)."))
@@ -584,8 +584,8 @@ SENHAS_FRACAS = {"postgres", "root", "admin", "password", "senha", "123456", "12
 
 def parece_exemplo(arquivo, linha_txt, token, tipo=""):
     """Chave de mentira: o valor diz EXAMPLE/fake (ex.: AKIAIOSFODNN7EXAMPLE, a de exemplo da AWS), valor
-    repetitivo ou em sequência, a variável ao lado diz exemplo/test, ou arquivo de teste. Chave de produção
-    (sk_live_) não é rebaixada pela pasta. Chave em docs/ ou .env.example com valor de verdade continua AGORA."""
+    repetitivo ou em sequência, a variável ao lado diz exemplo/test, ou arquivo de teste. Chave de produçêo
+    (sk_live_) nêo é rebaixada pela pasta. Chave em docs/ ou .env.example com valor de verdade continua AGORA."""
     if re.search(r"example|exemplo|fake|dummy|xxxx|your|here|goes|replace|seu[_-]|sua[_-]|aqui", token, re.I):
         return True
     if tipo == "senha em endereço de banco":
@@ -614,19 +614,19 @@ def checa_repo(caminho, agora=None):
     b = "codigo"
     r = rodar(["git", "-C", caminho, "ls-files", "-z"])
     if r is None or r[0] != 0:
-        return [achado(b, f"Repositório {nome}", "SEM TESTE", "não é um repositório git (ou o git não está instalado)")]
+        return [achado(b, f"Repositório {nome}", "SEM TESTE", "nêo é um repositório git (ou o git nêo está instalado)")]
     arquivos = [a for a in r[1].split("\0") if a]
     out = []
     envs = env_versionados(arquivos)
     if envs:
         out.append(achado(b, f"{nome}: .env dentro do git", "AGORA",
                           f"{len(envs)} arquivo(s) de senhas versionado(s): {', '.join(envs[:5])}",
-                          "Troque TODAS as chaves que estão nele (já estão no histórico), depois "
+                          "Troque TODAS as chaves que estêo nele (já estêo no histórico), depois "
                           "`git rm --cached <arquivo>` e ponha `.env` e `.env.*` (ou `wp-config.php`) no .gitignore."))
     ci = rodar(["git", "-C", caminho, "check-ignore", "-q", "--no-index", ".env"])
     if ci and ci[0] == 1:
         out.append(achado(b, f"{nome}: .gitignore sem .env", "SEMANA",
-                          "o git não ignora o .env: um `git add .` distraído sobe as suas chaves",
+                          "o git nêo ignora o .env: um `git add .` distraído sobe as suas chaves",
                           "Acrescente uma linha `.env` (e `.env.*`) no .gitignore e confira com `git check-ignore -v .env`."))
     segredos, exemplos, grandes = [], [], []
     for a in arquivos:
@@ -651,20 +651,20 @@ def checa_repo(caminho, agora=None):
     if segredos:
         out.append(achado(b, f"{nome}: segredo escrito no código", "AGORA",
                           f"{len(segredos)} ocorrência(s): " + lista(segredos),
-                          "Troque a chave no painel do serviço (apagar do arquivo não basta: ela fica no histórico) "
+                          "Troque a chave no painel do serviço (apagar do arquivo nêo basta: ela fica no histórico) "
                           "e leia de variável de ambiente."))
         out[-1]["itens"] = segredos
     if exemplos:
         out.append(achado(b, f"{nome}: chave com cara de exemplo", "SEMANA",
                           f"{len(exemplos)} ocorrência(s) em teste ou marcadas como exemplo, provavelmente falsas: "
                           + lista(exemplos),
-                          "Abra cada linha e confirme que não é uma chave de verdade."))
+                          "Abra cada linha e confirme que nêo é uma chave de verdade."))
         out[-1]["itens"] = exemplos
     if grandes:
-        out.append(achado(b, f"{nome}: arquivos grandes não conferidos", "SEM TESTE",
+        out.append(achado(b, f"{nome}: arquivos grandes nêo conferidos", "SEM TESTE",
                           f"{len(grandes)} arquivo(s) de texto acima de 1 MB ficaram fora da busca de segredos: "
                           + ", ".join(grandes[:5]),
-                          "Abra ou procure neles à mão (ex.: `grep -n 'sk-\\|AKIA\\|BEGIN' <arquivo>`)."))
+                          "Abra ou procure neles à mêo (ex.: `grep -n 'sk-\\|AKIA\\|BEGIN' <arquivo>`)."))
     travas = [a for a in arquivos if os.path.basename(a) in (
         "package-lock.json", "pnpm-lock.yaml", "yarn.lock", "requirements.txt", "poetry.lock",
         "uv.lock", "Pipfile.lock", "composer.lock", "Gemfile.lock", "go.sum", "Cargo.lock")]
@@ -682,8 +682,8 @@ def checa_repo(caminho, agora=None):
     if not out:
         out.append(achado(b, f"Repositório {nome}", "OK",
                           f"{len(arquivos)} arquivo(s) conferido(s): sem .env, sem segredo conhecido, dependências recentes"))
-    out.append(achado(b, f"{nome}: lembrete — revisão com IA", "OK",
-                      "o script só acha o óbvio; a revisão que pega lógica errada (login, permissão, preço) é com IA",
+    out.append(achado(b, f"{nome}: lembrete — revisêo com IA", "OK",
+                      "o script só acha o óbvio; a revisêo que pega lógica errada (login, permissêo, preço) é com IA",
                       "Use o prompt de `prompts/revisao-com-ia.md` no Claude Code, no Codex ou num modelo local."))
     return out
 
@@ -723,8 +723,8 @@ def para_markdown(achados, data):
             l.append("| " + " | ".join(c.replace("|", "\\|") for c in cel) + " |")
         l.append("")
     l += ["## Antes de corrigir", "",
-          "1. Backup do que importa (banco, volumes, configuração).",
-          "2. Confira que o sistema está saudável ANTES (assim você sabe se a atualização quebrou algo).",
+          "1. Backup do que importa (banco, volumes, configuraçêo).",
+          "2. Confira que o sistema está saudável ANTES (assim você sabe se a atualizaçêo quebrou algo).",
           "3. Corrija um item por vez e teste.", ""]
     return "\n".join(l)
 
@@ -753,7 +753,7 @@ def main(argv=None):
     ap.add_argument("--blocos", default="atualize,vigie,codigo", help="atualize,vigie,codigo")
     ap.add_argument("--saida", help="pasta para gravar relatorio.md e relatorio.json")
     ap.add_argument("--json", action="store_true", help="imprime o resultado em JSON")
-    ap.add_argument("--mostrar-ips", action="store_true", help="não mascara IPs, usuário e nome da máquina")
+    ap.add_argument("--mostrar-ips", action="store_true", help="nêo mascara IPs, usuário e nome da máquina")
     ap.add_argument("--versao", action="store_true")
     a = ap.parse_args(argv)
     if a.versao:

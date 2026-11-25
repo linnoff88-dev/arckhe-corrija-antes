@@ -61,7 +61,7 @@ saida, vistas = R.checa_portas()
 R.rodar = orig
 itens = {a["item"]: a["nivel"] for a in saida}
 confere("portas: Redis aberto = AGORA", itens.get("Porta 6379 aberta para a rede") == "AGORA")
-confere("portas: Postgres local não acusa", "Porta 5432 aberta para a rede" not in itens)
+confere("portas: Postgres local nêo acusa", "Porta 5432 aberta para a rede" not in itens)
 confere("portas: 8080 vai em SEMANA", itens.get("Outras portas abertas para a rede") == "SEMANA")
 confere("portas: 22 fica para o bloco SSH", 22 in vistas)
 
@@ -78,7 +78,7 @@ with tempfile.TemporaryDirectory() as d:
     linhas = R.le_sshd(principal)
     confere("sshd: Include vem antes e vence", R.valor_sshd(linhas, "PasswordAuthentication", "yes") == "no")
     confere("sshd: lê PermitRootLogin", R.valor_sshd(linhas, "PermitRootLogin", "x") == "yes")
-    confere("sshd: padrão quando ausente", R.valor_sshd([], "PasswordAuthentication", "yes") == "yes")
+    confere("sshd: padrêo quando ausente", R.valor_sshd([], "PasswordAuthentication", "yes") == "yes")
 
 # ── segredos ──
 AWS = "AKIA" + "Q7RTZB2M4XWN8KPL"
@@ -88,11 +88,11 @@ confere("segredo mascarado", AWS not in str(R.procura_segredos(f'k = "{AWS}"', "
 confere("token GitHub achado", R.procura_segredos(f"TOKEN={GH}", "deploy.sh")[0][0] == "token GitHub")
 CORPO_PEM = "b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW"
 confere("chave privada achada", R.procura_segredos("-----BEGIN OPENSSH PRIVATE KEY-----\n" + CORPO_PEM, "id")[0][0] == "chave privada")
-confere("só o cabeçalho da chave não acusa", R.procura_segredos('if pem.startswith("-----BEGIN RSA PRIVATE KEY-----"):', "a.py") == [])
+confere("só o cabeçalho da chave nêo acusa", R.procura_segredos('if pem.startswith("-----BEGIN RSA PRIVATE KEY-----"):', "a.py") == [])
 confere("pasta testes/ = exemplo", R.procura_segredos(f'"{AWS}"', "testes/test_pag.py")[0][3] is True)
-confere("sk-learn-Classifier2Model não é chave", R.procura_segredos("sk-learn-Classifier2Model-Version2x", "a.py") == [])
+confere("sk-learn-Classifier2Model nêo é chave", R.procura_segredos("sk-learn-Classifier2Model-Version2x", "a.py") == [])
 confere("senha em URL de banco", R.procura_segredos("DB=postgres://loja:Qz8vK2mR7t@db.loja.com/prod", "a.py")[0][0] == "senha em endereço de banco")
-confere("URL de banco com ${VAR} não acusa", R.procura_segredos("DB=postgres://loja:${DB_PASS}@db/prod", "a.py") == [])
+confere("URL de banco com ${VAR} nêo acusa", R.procura_segredos("DB=postgres://loja:${DB_PASS}@db/prod", "a.py") == [])
 confere("Mercado Pago", R.procura_segredos("APP_USR-1234567-111222-" + "a1b2c3d4e5f60718293a4b5c6d7e8f90" + "-7654321", "a.py")[0][0] == "token Mercado Pago")
 for nome, tok in (("chave Groq", "gsk_" + "Qz8vN2kR7tB4mW9xL3pC6yH1dF5gJ0sAbCdEfGhIj"),
                   ("token Hugging Face", "hf_" + "Qz8vN2kR7tB4mW9xL3pC6yH1dF5gJ0sA"),
@@ -103,20 +103,20 @@ def _jwt(role):
     b = lambda d: base64.urlsafe_b64encode(_j.dumps(d).encode()).decode().rstrip("=")
     return b({"alg": "HS256", "typ": "JWT"}) + "." + b({"iss": "supabase", "ref": "abcdefghijklmnop", "role": role, "iat": 1700000000}) + ".Qz8vN2kR7tB4mW9xL3pC6yH1dF5gJ0sA"
 confere("Supabase service_role achada", R.procura_segredos(f'k="{_jwt("service_role")}"', "src/config.js")[0][0] == "chave service_role do Supabase")
-confere("Supabase anon (pública) não acusa", R.procura_segredos(f'k="{_jwt("anon")}"', "src/config.js") == [])
+confere("Supabase anon (pública) nêo acusa", R.procura_segredos(f'k="{_jwt("anon")}"', "src/config.js") == [])
 confere("webhook do Slack", R.procura_segredos("u='https://hooks.slack.com/services/T0ABC123/B0DEF456/Qz8vN2kR7tB4mW9xL3pC6yH1'", "a.js")[0][0] == "webhook do Slack")
 confere("token npm", R.procura_segredos("//registry.npmjs.org/:_authToken=npm_" + "Qz8vN2kR7tB4mW9xL3pC6yH1dF5gJ0sAbCdE", ".npmrc")[0][0] == "token npm")
 confere("chave Resend", R.procura_segredos("RESEND=re_" + "Qz8vN2kR_7tB4mW9xL3pC6yH1", "a.py")[0][0] == "chave Resend")
-confere("re_compile_pattern não é chave", R.procura_segredos("x = re_compile_patternsWithStuff", "a.py") == [])
+confere("re_compile_pattern nêo é chave", R.procura_segredos("x = re_compile_patternsWithStuff", "a.py") == [])
 confere("wp-config com senha", R.procura_segredos("define( 'DB_PASSWORD', 'Qz8vN2kR7t' );", "wp-config.php")[0][0] == "senha/chave do WordPress")
-confere("wp-config de modelo não acusa", R.procura_segredos("define( 'AUTH_KEY', 'put your unique phrase here' );", "wp-config-sample.php") == [])
-confere("wp-config só com getenv não acusa", R.procura_segredos("define( 'DB_PASSWORD', getenv('DB_PASSWORD') );", "wp-config.php") == [] and R.env_versionados(["wp-config.php"]) == [])
+confere("wp-config de modelo nêo acusa", R.procura_segredos("define( 'AUTH_KEY', 'put your unique phrase here' );", "wp-config-sample.php") == [])
+confere("wp-config só com getenv nêo acusa", R.procura_segredos("define( 'DB_PASSWORD', getenv('DB_PASSWORD') );", "wp-config.php") == [] and R.env_versionados(["wp-config.php"]) == [])
 MP = "APP_USR-1234567-111222-" + "a1b2c3d4e5f60718293a4b5c6d7e8f90" + "-7654321"
-confere("Mercado Pago real não vira exemplo", R.procura_segredos(f"MP={MP}", "src/pay.js")[0][3] is False)
+confere("Mercado Pago real nêo vira exemplo", R.procura_segredos(f"MP={MP}", "src/pay.js")[0][3] is False)
 confere("AKIAIOSFODNN7EXAMPLE = exemplo", R.procura_segredos("aws_access_key_id = AKIAIOSFODNN7EXAMPLE", "docs/deploy.md")[0][3] is True)
 confere("postgres:postgres@localhost = exemplo", R.procura_segredos("DB=postgres://postgres:postgres@localhost:5432/dev", "a.py")[0][3] is True)
 confere("sk_live em testes/ continua real", R.procura_segredos('STRIPE="sk_live_' + '51Hq8ZkR2vB7nM4xL9pC3tY6"', "testes/fixture.py")[0][3] is False)
-confere("comentário longe com 'test' não rebaixa", R.procura_segredos('k = "sk_live_' + '51Hq8ZkR2vB7nM4xL9pC3tY6"' + "  # usado em test e prod", "src/a.py")[0][3] is False)
+confere("comentário longe com 'test' nêo rebaixa", R.procura_segredos('k = "sk_live_' + '51Hq8ZkR2vB7nM4xL9pC3tY6"' + "  # usado em test e prod", "src/a.py")[0][3] is False)
 import random
 random.seed(7)
 _b = lambda n: "".join(random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789") for _ in range(n))
@@ -136,11 +136,11 @@ confere("em tests/ = cara de exemplo", R.procura_segredos(f'"{AWS}"', "tests/tes
 confere("em app.py = de verdade", R.procura_segredos(f'"{AWS}"', "src/app.py")[0][3] is False)
 confere("sk-Ab1Ab1… = exemplo (baixa variedade)", R.procura_segredos('k="sk-' + 'Ab1' * 14 + '"', "src/a.js")[0][3] is True)
 confere("AIza…abcdefgh = exemplo (sequência)", R.procura_segredos('k="AIzaSyDxabcdefghijklmnopqrstuvwxyz12345"', "src/a.js")[0][3] is True)
-confere("classe CSS sk-spinner não é chave", R.procura_segredos('<div class="sk-spinner-wave-container-rect-item">', "a.html") == [])
-confere("'latest' não vira exemplo", R.procura_segredos(f'const latestKey = "sk-proj-Zq8vN2kR7tB4mW9xL3pC6yH1dF5gJ0s"', "src/a.js")[0][3] is False)
+confere("classe CSS sk-spinner nêo é chave", R.procura_segredos('<div class="sk-spinner-wave-container-rect-item">', "a.html") == [])
+confere("'latest' nêo vira exemplo", R.procura_segredos(f'const latestKey = "sk-proj-Zq8vN2kR7tB4mW9xL3pC6yH1dF5gJ0s"', "src/a.js")[0][3] is False)
 confere("chave Stripe achada", R.procura_segredos('STRIPE="sk_live_' + '51Hq8ZkR2vB7nM4xL9pC3tY6"', "pay.py")[0][0] == "chave Stripe")
 confere("chave em docs/ continua AGORA", R.procura_segredos(f'"{AWS}"', "docs/deploy.md")[0][3] is False)
-confere("texto comum não acusa", R.procura_segredos("skill-de-teste e AKIA curto", "x.md") == [])
+confere("texto comum nêo acusa", R.procura_segredos("skill-de-teste e AKIA curto", "x.md") == [])
 confere(".env versionado", R.env_versionados([".env", "api/.env.local", ".env.example", "a/b.env.sample", "x.txt"]) == [".env", "api/.env.local"])
 
 # ── repositório de verdade (temporário) ──
@@ -161,8 +161,8 @@ with tempfile.TemporaryDirectory() as d:
     for regra, protege in (("**/.env\n", True), (".env*\n", True), (".env.*\n", False), (".env\n!.env\n", False)):
         open(os.path.join(d, ".gitignore"), "w").write(regra)
         alarme = any(".gitignore sem .env" in a["item"] for a in R.checa_repo(d))
-        confere(f"gitignore {regra.strip()!r}: {'protege' if protege else 'NÃO protege'}", alarme != protege)
-    # versão limpa
+        confere(f"gitignore {regra.strip()!r}: {'protege' if protege else 'NêO protege'}", alarme != protege)
+    # versêo limpa
     g("rm", "-q", "--cached", ".env")
     os.remove(os.path.join(d, ".env"))
     open(os.path.join(d, "app.py"), "w").write('TOKEN = os.environ["TOKEN"]\n')
@@ -191,7 +191,7 @@ import contextlib, io
 with contextlib.redirect_stderr(io.StringIO()):
     confere("--blocos inválido = 2", R.main(["--blocos", "tudo"]) == 2)
 
-# ── só leitura: o script não chama nada que muda o sistema ──
+# ── só leitura: o script nêo chama nada que muda o sistema ──
 fonte = open(os.path.join(os.path.dirname(AQUI), "relogio.py"), encoding="utf-8").read()
 proibidos = ['"upgrade"]', '"install"', '"refresh"]', '"pull"', '"enable"', "sudo", "urlopen", "requests"]
 cmds = [l for l in fonte.splitlines() if "rodar([" in l]

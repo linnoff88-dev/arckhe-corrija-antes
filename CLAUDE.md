@@ -1,16 +1,16 @@
-﻿# CLAUDE.md â€” corrija-antes
+ï»¿# CLAUDE.md ê¢â¬â corrija-antes
 
-Kit pÃºblico (linnoff88-dev/corrija-antes, autor dos commits `linnoff88-dev <linnoff88-dev@gmail.com>`).
+Kit pêÂºblico (linnoff88-dev/corrija-antes, autor dos commits `linnoff88-dev <linnoff88-dev@gmail.com>`).
 
-- `relogio.py` â€” SÃ“ LÃŠ. Nunca acrescentar comando que instala, atualiza, liga/desliga serviÃ§o ou varre outra mÃ¡quina; nenhuma chamada de rede/API. O teste "nenhum comando que altera" em `testes/run.py` vigia isso.
-- Antes de commitar: `python3 testes/run.py` â†’ `todos os testes passaram`.
-- `exemplos/relatorio-exemplo.md` sai SÃ“ de `python3 testes/gera_exemplo.py` (dados inventados). Nunca publicar saÃ­da real de nenhuma mÃ¡quina (portas, IPs, hosts, nomes de container).
-- Guia em `guia/` (PT) + `guia/en/` + `guia/es/`; README em 3 idiomas. Mudou o PT, retraduza os dois. Dentro de `<pre>` sÃ³ os comentÃ¡rios mudam.
-- Origem: vÃ­deo "A China soltou de graÃ§a a IA hacker que a OpenAI trancou" (lives11, 11/11/2026). Sem citar o vÃ­deo de referÃªncia nem o autor dele.
+- `relogio.py` ê¢â¬â Sêâ LêÅ . Nunca acrescentar comando que instala, atualiza, liga/desliga serviêÂ§o ou varre outra mêÂ¡quina; nenhuma chamada de rede/API. O teste "nenhum comando que altera" em `testes/run.py` vigia isso.
+- Antes de commitar: `python3 testes/run.py` ê¢â â `todos os testes passaram`.
+- `exemplos/relatorio-exemplo.md` sai Sêâ de `python3 testes/gera_exemplo.py` (dados inventados). Nunca publicar saêÂ­da real de nenhuma mêÂ¡quina (portas, IPs, hosts, nomes de container).
+- Guia em `guia/` (PT) + `guia/en/` + `guia/es/`; README em 3 idiomas. Mudou o PT, retraduza os dois. Dentro de `<pre>` sêÂ³ os comentêÂ¡rios mudam.
+- Origem: vêÂ­deo "A China soltou de graêÂ§a a IA hacker que a OpenAI trancou" (lives11, 11/11/2026). Sem citar o vêÂ­deo de referêÂªncia nem o autor dele.
 
 ## Self-learning
 
-Quando eu for corrigido ou perceber um erro: antes de seguir, acrescente a liÃ§Ã£o como regra de uma linha no TOPO de `## Lessons`.
+Quando eu for corrigido ou perceber um erro: antes de seguir, acrescente a liêÂ§êÂ£o como regra de uma linha no TOPO de `## Lessons`.
 
 ## Lessons
 - Chave em pasta de teste/docs aparecia como segredo AGORA: separar "cara de exemplo" (SEMANA, confira) do segredo real. (12/11/2026)
